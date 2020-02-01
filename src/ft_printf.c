@@ -6,7 +6,7 @@
 /*   By: maperrea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:51:20 by maperrea          #+#    #+#             */
-/*   Updated: 2020/01/30 17:29:16 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/02/01 04:58:54 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,10 @@ int		ft_printf(const char *str, ...)
 
 int main()
 {
-	ft_printf("abc", 19, 42);
+	char	*str = "abcd%0 15.5lldefghi%#+15.5j%%kl%+%";
+	t_tag	tag;
+
+	while (parse_str(&str, &tag) == 1)
+		printf("\n>>flags = %d\n>>width = %d\n>>precision = %d\n>>length = %d\n>>specifier = %d\n", tag.flags, tag.width, tag.precision, tag.length, tag.specifier);
+	printf("\n>>flags = %d\n>>width = %d\n>>precision = %d\n>>length = %d\n>>specifier = %d\n", tag.flags, tag.width, tag.precision, tag.length, tag.specifier);
 }

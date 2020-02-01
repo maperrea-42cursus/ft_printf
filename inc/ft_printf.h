@@ -6,7 +6,7 @@
 /*   By: maperrea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:50:12 by maperrea          #+#    #+#             */
-/*   Updated: 2020/01/30 17:29:18 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/02/01 04:58:56 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,18 @@
 # define HASHTAG		0b00000010
 # define ZEROES			0b00000001
 # define FLAGS			"0# +-"
-# define TYPES			"cspdiuxXnfge"
+# define TYPES			"cspdiuxX%nfge"
 
 typedef unsigned char	t_bit_flag_8;
 
-
 typedef enum			e_type
 {
+	NONE = -1,
 	CHAR,
 	STRING,
 	POINTER,
-	INT,
+	INT_D,
+	INT_I,
 	UNSIGNED_INT,
 	HEX_LC,
 	HEX_UC,
@@ -70,8 +71,8 @@ typedef union			u_var
 typedef struct			s_tag
 {
 	t_bit_flag_8		flags;
-	unsigned int		width;
-	unsigned int		precision;
+	int					width;
+	int					precision;
 	t_length			length;
 	t_type				specifier;
 }						t_tag;

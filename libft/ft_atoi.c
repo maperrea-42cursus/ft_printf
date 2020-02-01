@@ -6,7 +6,7 @@
 /*   By: maperrea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 13:31:40 by maperrea          #+#    #+#             */
-/*   Updated: 2020/01/27 13:33:27 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/01/31 22:21:35 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,4 @@ int			ft_atoi(const char *str)
 	while (str[i] >= 48 && str[i] <= 57)
 		result = (result * 10) + (str[i++] - 48);
 	return (neg == 1 ? result * -1 : result);
-}
-
-int main()
-{
-	printf("%d\n",ft_atoi("18446744073709551619"));
-	printf("%d\n",atoi("18446744073709551619"));
 }
