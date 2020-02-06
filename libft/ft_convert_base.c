@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_convert_base.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maperrea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/07 15:17:38 by maperrea          #+#    #+#             */
-/*   Updated: 2020/02/05 02:00:16 by maperrea         ###   ########.fr       */
+/*   Created: 2020/02/06 18:58:34 by maperrea          #+#    #+#             */
+/*   Updated: 2020/02/06 19:03:07 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlen(const char *s)
+char	*ft_convert_base(char *str, char *base_from, char *base_to)
 {
-	int i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	return (ft_itoa_base(ft_atoi_base(str, base_from), base_to));
 }

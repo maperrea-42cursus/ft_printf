@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_print_pointer.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maperrea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/07 15:17:38 by maperrea          #+#    #+#             */
-/*   Updated: 2020/02/05 02:00:16 by maperrea         ###   ########.fr       */
+/*   Created: 2020/02/06 19:26:19 by maperrea          #+#    #+#             */
+/*   Updated: 2020/02/06 19:33:30 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_strlen(const char *s)
+int		print_pointer(t_tag tag, va_list ap)
 {
-	int i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	tag.flags = tag.flags | HASHTAG;
+	tag.specifier = HEX_LC;
+	tag.length = &get_long;
+	return(print_hex(tag, ap));
 }

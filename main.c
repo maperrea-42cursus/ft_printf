@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maperrea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/07 15:17:38 by maperrea          #+#    #+#             */
-/*   Updated: 2020/02/05 02:00:16 by maperrea         ###   ########.fr       */
+/*   Created: 2020/02/06 20:41:28 by maperrea          #+#    #+#             */
+/*   Updated: 2020/02/06 22:26:12 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdio.h>
+#include "ft_printf.h"
+#define INPUT "%010%|\n"
 
-int	ft_strlen(const char *s)
+int main()
 {
-	int i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+//	printf(">>%p<<\n", &i);
+	int ret_libc = 1;
+	int ret;
+	ret = ft_printf(INPUT);
+	ret_libc = printf(INPUT);
+	ft_printf("ret = %d\nret_libc = %d\n", ret, ret_libc);
+	
 }

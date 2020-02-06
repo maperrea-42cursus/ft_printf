@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_print_count.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maperrea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/07 15:17:38 by maperrea          #+#    #+#             */
-/*   Updated: 2020/02/05 02:00:16 by maperrea         ###   ########.fr       */
+/*   Created: 2020/02/04 18:30:25 by maperrea          #+#    #+#             */
+/*   Updated: 2020/02/04 18:31:23 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_strlen(const char *s)
+int		print_count(t_tag tag, va_list ap)
 {
-	int i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	(void)tag;
+	(void)ap;
+	return (0);
 }

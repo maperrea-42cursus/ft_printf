@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_padding.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maperrea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/07 15:17:38 by maperrea          #+#    #+#             */
-/*   Updated: 2020/02/05 02:00:16 by maperrea         ###   ########.fr       */
+/*   Created: 2020/02/04 17:58:02 by maperrea          #+#    #+#             */
+/*   Updated: 2020/02/04 18:03:25 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include	"ft_printf.h"
 
-int	ft_strlen(const char *s)
+void	padding(int size, int zeroes)
 {
-	int i;
+	char	c;
+	int		i;
 
+	c = zeroes ? '0' : ' ';
 	i = 0;
-	while (s[i])
+	while (i < size)
+	{
+		write(1, &c, 1);
 		i++;
-	return (i);
+	}
 }

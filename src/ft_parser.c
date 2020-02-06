@@ -6,96 +6,112 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 16:23:16 by maperrea          #+#    #+#             */
-/*   Updated: 2020/02/01 04:58:53 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/02/06 22:04:20 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_bit_flag_8	get_flags(char **str)
+t_bit_flag_8	get_flags(const char *str, int *pos)
 {
 	int				ret;
 	t_bit_flag_8	flags;
 
 	flags = 0;
-	while (**str && (ret = ft_strchr(FLAGS, **str)) != -1)
+	while (str[*pos] && (ret = ft_strchr(FLAGS, str[*pos])) != -1)
 	{
 		flags = flags | (1 << ret);
-		(*str)++;
+		(*pos)++;
 	}
 	return (flags);
 }
 
-int				get_width(char **str)
+int				get_width(const char *str, int *pos)
 {
 	int ret;
 
-	ret = ft_atoi(*str);
-	if (!ft_isdigit(**str))
+	if (str[*pos] == '*')
+	{
+		(*pos)++;
+		return (-2);
+	}
+	ret = ft_atoi(&(str[*pos]));
+	if (!ft_isdigit(str[*pos]))
 		return (-1);
-	while (ft_isdigit(**str))
-		(*str)++;
+	while (ft_isdigit(str[*pos]))
+		(*pos)++;
 	return (ret);
 }
 
-int				get_precision(char **str)
+int				get_precision(const char *str, int *pos)
 {
 	int ret;
 
-	ret = ft_atoi((*str) + 1);
-	if (**str != '.')
+	if (str[*pos] != '.')
 		return (-1);
-	(*str)++;
-	while (ft_isdigit(**str))
-		(*str)++;
+	(*pos)++;
+	if (str[*pos] == '*')
+	{
+		(*pos)++;
+		return (-2);
+	}
+	ret = ft_atoi(&(str[*pos]));
+	while (ft_isdigit(str[*pos]))
+		(*pos)++;
 	return (ret);
 }
 
-t_length		get_length(char **str)
+t_length		*get_length(const char *str, int *pos)
 {
-	t_length length;
+	t_length *length;
 
-	length = REGULAR;
-	if (**str == 'l')
-		length = LONG;
-	if (**str == 'l' && *((*str) + 1) == 'l')
-		length = LONG_LONG;
-	if (**str == 'h')
-		length = SHORT;
-	if (**str == 'h' && *((*str) + 1) == 'h')
-		length = SHORT_SHORT;
-	if (length == SHORT || length == LONG)
-		(*str)++;
-	if (length == SHORT_SHORT || length == LONG_LONG)
-		*str += 2;
+	length = &get_regular;
+	if (str[*pos] == 'l')
+		length = &get_long;
+	if (str[*pos] == 'l' && str[*pos + 1] == 'l')
+		length = &get_long_long;
+	if (str[*pos] == 'h')
+		length = &get_short;
+	if (str[*pos] == 'h' && str[*pos + 1] == 'h')
+		length = &get_short_short;
+	if (length == &get_short || length == &get_long)
+		(*pos)++;
+	if (length == &get_short_short || length == &get_long_long)
+		(*pos) += 2;
 	return (length);
 }
 
-int				parse_str(char **str, t_tag *tag)
+void			build_tag(t_tag *tag, const char *str, int *pos)
 {
-	char	*cpy;
+	tag->flags = get_flags(str, pos);
+	tag->width = get_width(str, pos);
+	tag->precision = get_precision(str, pos);
+	tag->length = get_length(str, pos);
+	tag->specifier = ft_strchr(TYPES, str[*pos]);
+}
 
+int				parse_str(const char **str, t_tag *tag)
+{
+	int		pos;
+	int 	i;
+
+	i = 0;
 	while (**str)
 	{
 		if (**str == '%')
 		{
-			if (!(cpy = ft_substr(*str, 1, ft_strlen(*str))))
-				return (-1);
-			tag->flags = get_flags(&cpy);
-			tag->width = get_width(&cpy);
-			tag->precision = get_precision(&cpy);
-			tag->length = get_length(&cpy);
-			tag->specifier = ft_strchr(TYPES, *cpy);
-			if (tag->specifier != NONE && tag->specifier != PERCENTAGE)
+			pos = 1;
+			build_tag(tag, *str, &pos);
+			if (tag->specifier != NONE)
 			{
-				*str = cpy + 1;
-				return (1);
+				*str += pos + 1;
+				return (i);
 			}
 		}
-		if (**str == '%' && *((*str) + 1) == '%')
-			(*str)++;
 		write(1, *str, 1);
 		(*str)++;
+		i++;
 	}
-	return (0);
+	tag->specifier = NONE;
+	return (i);
 }

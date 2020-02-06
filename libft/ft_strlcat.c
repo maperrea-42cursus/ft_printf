@@ -6,17 +6,17 @@
 /*   By: maperrea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 11:16:30 by maperrea          #+#    #+#             */
-/*   Updated: 2020/01/09 16:12:33 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/02/06 21:16:23 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+size_t	ft_strlcat(char *dst, const char *src, int size)
 {
-	size_t i;
-	size_t j;
-	size_t return_val;
+	int i;
+	int j;
+	int return_val;
 
 	return_val = ft_strlen(src) +
 		((ft_strlen(dst) > size) ? size : ft_strlen(dst));
