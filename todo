@@ -6,23 +6,8 @@
 #    By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/01 04:14:49 by maperrea          #+#    #+#              #
-#    Updated: 2020/02/03 18:25:16 by maperrea         ###   ########.fr        #
+#    Updated: 2020/02/07 00:05:55 by maperrea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-calculate size
-malloc
-construct string
-
-size:
-	char: always 1
-	string: strlen
-	pointer: same as hex_lc
-	int d & i: itoa then strlen
-	unsigned int: uitoa
-	hex lc & uc: convert to string then strlen
-	percentage: just return
-	count: none
-	double: dtoa?:
-	e or f: try both and keep shortest
-	science: 
+precision and value == 0 for HEX_UC

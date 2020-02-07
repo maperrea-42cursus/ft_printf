@@ -6,7 +6,7 @@
 /*   By: maperrea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:51:20 by maperrea          #+#    #+#             */
-/*   Updated: 2020/02/06 22:27:28 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/02/07 01:09:06 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int		ft_printf(const char *str, ...)
 	t_print	**dispatch_table;
 	t_tag	tag;
 	int		ret;
+	int		*ptr;
 
 	ret = 0;
 	va_start(ap, str);
@@ -49,7 +50,11 @@ int		ft_printf(const char *str, ...)
 	{
 		ret += (*(dispatch_table[tag.specifier]))(tag, ap);
 		if (tag.specifier == COUNT)
-			*(va_arg(ap, int *)) = ret;
+		{
+			ptr = va_arg(ap, int *);
+			if (ptr)
+				*ptr = ret;
+		}
 		ret += parse_str(&str, &tag);
 	}
 	va_end(ap);
@@ -70,4 +75,4 @@ int main()
 	
 }
 */
-		//printf(">>flags = %d\n>>width = %d\n>>precision = %d\n>>length = %d\n>>specifier = %d\n", tag.flags, tag.width, tag.precision, tag.length, tag.specifier);
+//		printf(">>flags = %d\n>>width = %d\n>>precision = %d\n>>specifier = %d\n", tag.flags, tag.width, tag.precision, tag.specifier);

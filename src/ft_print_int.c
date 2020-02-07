@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 20:08:37 by maperrea          #+#    #+#             */
-/*   Updated: 2020/02/06 20:30:52 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/02/07 01:06:49 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	print_nbr(t_tag tag, t_nbr n)
 				- ((tag.flags & (PLUS | SPACE)) || n.neg ? 1 : 0), 1);
 	if (tag.precision != -1)
 		padding(n.precision - ft_strlen(&(n.nbr)[n.neg]), 1);
-	write(1, &(n.nbr)[n.neg], ft_strlen(&(n.nbr)[n.neg]));
+	if (!(n.precision == 0 && !ft_atoi(n.nbr)))
+		write(1, &(n.nbr)[n.neg], ft_strlen(&(n.nbr)[n.neg]));
 	if (tag.width != -1 && (tag.flags & MINUS))
 		padding(n.width - n.size
 				- ((tag.flags & (PLUS | SPACE)) || n.neg ? 1 : 0), 0);
@@ -42,13 +43,13 @@ int		print_int(t_tag tag, va_list ap)
 	tag.precision = n.precision < 0 ? -1 : tag.precision;
 	n.nbr = (*(tag.length))(ap, 0);
 	n.neg = *(n.nbr) == '-' ? 1 : 0;
-	n.size = ft_strlen(&(n.nbr)[n.neg]) > n.precision ?
-					ft_strlen(&(n.nbr)[n.neg]) : n.precision;
+	n.size = ft_strlen(&(n.nbr)[n.neg]) > n.precision && !(n.precision == 0 
+		&& !ft_atoi(n.nbr)) ? ft_strlen(&(n.nbr)[n.neg]) : n.precision;
 	tag.flags = n.width < 0 ? tag.flags | MINUS : tag.flags;
 	n.width = n.width < 0 ? -n.width : n.width;
 	print_nbr(tag, n);
 	free(n.nbr);
-	return (n.width > n.size ?
+	return (n.width > n.size && n.size != 0 ?
 			n.width : n.size + (n.neg | ((tag.flags & PLUS) >> 3)
 										| ((tag.flags & SPACE) >> 2)));
 }

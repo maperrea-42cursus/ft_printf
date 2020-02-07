@@ -6,7 +6,7 @@
 #    By: maperrea <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/27 18:04:28 by maperrea          #+#    #+#              #
-#    Updated: 2020/02/06 22:27:18 by maperrea         ###   ########.fr        #
+#    Updated: 2020/02/07 00:11:29 by maperrea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,8 +57,8 @@ $(LIB):
 $(NAME):	$(LIB) $(OBJDIR) $(OBJS)
 			ar rc $(NAME) $(OBJS) $(LIBOBJS) #$(LIBDIR)/lib$(LIB).a
 
-a.out:		$(LIB)
-			$(CC) $(CFLAGS) -fsanitize=address -I$(INCDIR) -I$(LIBINC) -L$(LIBDIR) -l$(LIB) $(addprefix $(SRCDIR)/,$(SRCS))
+a.out:		all $(LIB)
+			$(CC) -fsanitize=address -I$(INCDIR) -I$(LIBINC) $(NAME) main.c
 
 clean:
 			$(RM) -r $(OBJDIR)

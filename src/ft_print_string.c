@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 18:42:00 by maperrea          #+#    #+#             */
-/*   Updated: 2020/02/06 22:26:10 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/02/07 00:36:01 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,14 @@ int		print_string(t_tag tag, va_list ap)
 
 	width = tag.width == -2 ? va_arg(ap, int) : tag.width;
 	precision = tag.precision == -2 ? va_arg(ap, int) : tag.precision;
+	tag.flags = width < 0 && tag.width != -1 ? tag.flags | MINUS : tag.flags;
+	width = width < 0 && tag.width != -1 ? -width : width;
 	str = va_arg(ap, char *);
-	size = (int)ft_strlen(str) > precision && precision != -1 ? 
-			precision : (int)ft_strlen(str);
-	if (width < 0)
-	{
-		tag.flags = tag.flags & MINUS;
-		width = -width;
-	}
+	if (!str)
+		str = "(null)";
+	size = ft_strlen(str) > precision && precision >= 0 ? precision : ft_strlen(str);
 	if (tag.width != -1 && !(tag.flags & MINUS))
-		padding(width - size, 0);
+		padding(width - size, tag.flags & ZEROES ? 1 : 0);
 	write(1, str, size);
 	if (tag.width != -1 && (tag.flags & MINUS))
 		padding(width - size, 0);
