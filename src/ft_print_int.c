@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 20:08:37 by maperrea          #+#    #+#             */
-/*   Updated: 2020/02/07 01:06:49 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/02/11 18:25:29 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	print_nbr(t_tag tag, t_nbr n)
 				- ((tag.flags & (PLUS | SPACE)) || n.neg ? 1 : 0), 0);
 	n.neg ? write(1, "-", 1) : 0;
 	!n.neg && (tag.flags & PLUS) ? write(1, "+", 1) : 0;
-	!n.neg && (tag.flags & SPACE) ? write(1, " ", 1) : 0;
+	!n.neg && !(tag.flags & PLUS) && (tag.flags & SPACE) ? write(1, " ", 1) : 0;
 	if ((tag.width != -1 && (tag.flags & ZEROES) &&
 				!(tag.flags & MINUS)) && tag.precision == -1)
 		padding(n.width - n.size
@@ -45,11 +45,11 @@ int		print_int(t_tag tag, va_list ap)
 	n.neg = *(n.nbr) == '-' ? 1 : 0;
 	n.size = ft_strlen(&(n.nbr)[n.neg]) > n.precision && !(n.precision == 0 
 		&& !ft_atoi(n.nbr)) ? ft_strlen(&(n.nbr)[n.neg]) : n.precision;
-	tag.flags = n.width < 0 ? tag.flags | MINUS : tag.flags;
-	n.width = n.width < 0 ? -n.width : n.width;
+	tag.flags = n.width < 0 && tag.width != -1 ? tag.flags | MINUS : tag.flags;
+	n.width = n.width < 0 && tag.width != -1 ? -n.width : n.width;
 	print_nbr(tag, n);
 	free(n.nbr);
-	return (n.width > n.size && n.size != 0 ?
+	return (n.width > n.size ?
 			n.width : n.size + (n.neg | ((tag.flags & PLUS) >> 3)
 										| ((tag.flags & SPACE) >> 2)));
 }

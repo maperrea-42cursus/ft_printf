@@ -6,19 +6,20 @@
 /*   By: maperrea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:50:12 by maperrea          #+#    #+#             */
-/*   Updated: 2020/02/06 22:26:14 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/02/15 19:15:44 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <unistd.h>
-# include <string.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include "libft.h"
+# include				<unistd.h>
+# include				<string.h>
+# include				<stdio.h>
+# include				<stdlib.h>
+# include				<stdarg.h>
+# include				<limits.h>
+# include				"libft.h"
 
 # define ZEROES			0b00000001
 # define HASHTAG		0b00000010
@@ -70,6 +71,12 @@ typedef struct			s_nbr
 	int					size;
 	int					neg;
 }						t_nbr;
+
+typedef struct			s_double
+{
+	int					*int_part;
+	int					*float_part;
+}						t_double;
 
 typedef int				(t_print)(t_tag, va_list);
 

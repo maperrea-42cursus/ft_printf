@@ -6,7 +6,7 @@
 /*   By: maperrea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:51:20 by maperrea          #+#    #+#             */
-/*   Updated: 2020/02/07 01:09:06 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/02/15 18:35:16 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,19 @@ t_print	**init_dispatch_table(void)
 
 	if (!(table = malloc(sizeof(t_print *) * 12)))
 		return (NULL);
-	table[0] = &print_char;
-	table[1] = &print_string;
-	table[2] = &print_pointer;
-	table[3] = &print_int;
-	table[4] = &print_int;
-	table[5] = &print_unsigned;
-	table[6] = &print_hex;
-	table[7] = &print_hex;
-	table[8] = &print_percentage;
-	table[9] = &print_count;
-/*	table[10] = &print_double;
-	table[11] = &print_e_or_f;
-	table[12] = &print_science; */
+	table[CHAR] = &print_char;
+	table[STRING] = &print_string;
+	table[POINTER] = &print_pointer;
+	table[INT_D] = &print_int;
+	table[INT_I] = &print_int;
+	table[UNSIGNED_INT] = &print_unsigned;
+	table[HEX_LC] = &print_hex;
+	table[HEX_UC] = &print_hex;
+	table[PERCENTAGE] = &print_percentage;
+	table[COUNT] = &print_count;
+	table[DOUBLE] = &print_double;
+/*	table[E_OR_F] = &print_e_or_f;
+	table[SCIENCE] = &print_science; */
 	return(table);
 }
 
@@ -50,11 +50,8 @@ int		ft_printf(const char *str, ...)
 	{
 		ret += (*(dispatch_table[tag.specifier]))(tag, ap);
 		if (tag.specifier == COUNT)
-		{
-			ptr = va_arg(ap, int *);
-			if (ptr)
+			if ((ptr = va_arg(ap, int *)))
 				*ptr = ret;
-		}
 		ret += parse_str(&str, &tag);
 	}
 	va_end(ap);
@@ -62,17 +59,4 @@ int		ft_printf(const char *str, ...)
 	return (ret);
 }
 
-#define INPUT "", (char)-10
-/*
-int main()
-{
-//	printf(">>%p<<\n", &i);
-	int ret_libc = 1;
-	int ret;
-	ret = ft_printf(INPUT);
-//	ret_libc = printf(INPUT);
-	ft_printf("ret = %d\nret_libc = %d\n", ret, ret_libc);
-	
-}
-*/
 //		printf(">>flags = %d\n>>width = %d\n>>precision = %d\n>>specifier = %d\n", tag.flags, tag.width, tag.precision, tag.specifier);

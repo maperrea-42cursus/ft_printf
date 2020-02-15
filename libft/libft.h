@@ -6,7 +6,7 @@
 /*   By: maperrea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 14:08:32 by maperrea          #+#    #+#             */
-/*   Updated: 2020/02/06 21:17:55 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/02/13 16:55:00 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int				ft_strncmp(const char *s1, const char *s2, size_t n);
 long long		ft_atoi(const char *str);
 long long		ft_atoi_base(const char *str, const char *base);
 int				ft_strlen(const char *s);
+int				ft_nbrlen(long long nbr);
 size_t			ft_strlcpy(char *dst, const char *src, size_t size);
 size_t			ft_strlcat(char *dst, const char *src, int size);
 char			*ft_strnstr(const char *s1, const char *s2, size_t n);
@@ -50,6 +51,8 @@ int				ft_isprint(int c);
 int				ft_tolower(int c);
 int				ft_toupper(int c);
 
+long long		ft_exp(long long nbr, int exp);
+
 char			*ft_substr(const char *s, unsigned int start, int len);
 char			*ft_strjoin(const char *s1, const char *s2);
 char			*ft_strtrim(const char *s1, const char *set);
@@ -64,6 +67,7 @@ void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char *str, int fd);
 void			ft_putendl_fd(char *str, int fd);
 void			ft_putnbr_fd(int nbr, int fd);
+void			ft_putfloat(double f, int precision);
 
 t_list			*ft_lstnew(void *content);
 void			ft_lstadd_front(t_list **list, t_list *new);

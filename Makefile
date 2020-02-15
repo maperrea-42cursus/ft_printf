@@ -6,7 +6,7 @@
 #    By: maperrea <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/27 18:04:28 by maperrea          #+#    #+#              #
-#    Updated: 2020/02/07 00:11:29 by maperrea         ###   ########.fr        #
+#    Updated: 2020/02/13 17:21:21 by maperrea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,8 @@ $(LIB):
 			make -C libft
 
 $(NAME):	$(LIB) $(OBJDIR) $(OBJS)
-			ar rc $(NAME) $(OBJS) $(LIBOBJS) #$(LIBDIR)/lib$(LIB).a
+			ar rc $(NAME) $(OBJS) $(LIBOBJS)
+			ranlib $(NAME)
 
 a.out:		all $(LIB)
 			$(CC) -fsanitize=address -I$(INCDIR) -I$(LIBINC) $(NAME) main.c
