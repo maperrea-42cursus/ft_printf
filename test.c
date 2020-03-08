@@ -5,14 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/13 17:22:50 by maperrea          #+#    #+#             */
-/*   Updated: 2020/02/13 17:23:17 by maperrea         ###   ########.fr       */
+/*   Created: 2020/02/18 13:51:47 by maperrea          #+#    #+#             */
+/*   Updated: 2020/03/07 12:47:13 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
+#include <stdio.h>
+#include <limits.h>
 
 int main()
 {
-	va_arg(ap, int);
+	unsigned char a;
+	unsigned char b;
+
+	a = 10;
+	b = 200;
+	printf("%d\n", a - b);
 }

@@ -6,7 +6,7 @@
 /*   By: maperrea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:51:20 by maperrea          #+#    #+#             */
-/*   Updated: 2020/02/15 18:35:16 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/03/03 17:00:23 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int		ft_printf(const char *str, ...)
 	int		ret;
 	int		*ptr;
 
+	if (!str)
+		return (-1);
 	ret = 0;
 	va_start(ap, str);
 	dispatch_table = init_dispatch_table();

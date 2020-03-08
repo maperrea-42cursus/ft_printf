@@ -6,7 +6,7 @@
 #    By: maperrea <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/27 18:04:28 by maperrea          #+#    #+#              #
-#    Updated: 2020/02/13 17:21:21 by maperrea         ###   ########.fr        #
+#    Updated: 2020/02/25 15:23:56 by maperrea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ RM			= rm -f
 CFLAGS		= -Wall -Werror -Wextra
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
-			$(CC) $(CFLAGS) -I$(INCDIR) -I$(LIBINC) -c $^ -o $@
+			$(CC) -O3 $(CFLAGS) -I$(INCDIR) -I$(LIBINC) -c $^ -o $@
 
 all:		$(NAME)
 
@@ -52,14 +52,17 @@ $(OBJDIR):
 			mkdir -p $(OBJDIR)
 
 $(LIB):
-			make -C libft
+			@make -C libft
+			@echo "\033[38;5;33mlibft: \033[38;5;2m[OK]\033[0m"
 
 $(NAME):	$(LIB) $(OBJDIR) $(OBJS)
-			ar rc $(NAME) $(OBJS) $(LIBOBJS)
-			ranlib $(NAME)
+			@ar rc $(NAME) $(OBJS) $(LIBOBJS)
+			@ranlib $(NAME)
+			@echo "\033[38;5;33mlibftprintf: \033[38;5;2m[OK]\033[0m"
 
 a.out:		all $(LIB)
-			$(CC) -fsanitize=address -I$(INCDIR) -I$(LIBINC) $(NAME) main.c
+			@$(CC) -O3 -fsanitize=address -I$(INCDIR) -I$(LIBINC) $(NAME) main.c
+			@echo "\033[38;5;33mmain: \033[38;5;2m[OK]\033[0m"
 
 clean:
 			$(RM) -r $(OBJDIR)
@@ -67,6 +70,7 @@ clean:
 
 fclean:		clean
 			$(RM) $(NAME)
+			$(RM) $(LIBDIR)/libft.a
 			$(RM) a.out
 
 re:			

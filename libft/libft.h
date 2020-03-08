@@ -6,7 +6,7 @@
 /*   By: maperrea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 14:08:32 by maperrea          #+#    #+#             */
-/*   Updated: 2020/02/13 16:55:00 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/02/27 13:44:55 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ char			*ft_strnstr(const char *s1, const char *s2, size_t n);
 int				ft_strchr(const char *s, int c);
 char			*ft_strrchr(const char *s, int c);
 char			*ft_strdup(const char *str);
+char			*ft_reverse_str(char *str);
 void			*ft_calloc(size_t count, size_t size);
+void			*ft_realloc(void **ptr, size_t orig_size, size_t new_size);
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);
 int				ft_isalnum(int c);
@@ -61,6 +63,7 @@ char			*ft_itoa(long long n);
 char			*ft_utoa(unsigned long long n);
 char			*ft_itoa_base(long long n, const char *base);
 char			*ft_utoa_base(unsigned long long n, const char *base);
+char			*ft_ftoa(double d, int precision);
 char			*ft_convert_base(char *str, char *base_from, char *base_to);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void			ft_putchar_fd(char c, int fd);
