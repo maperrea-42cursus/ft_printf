@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 19:23:31 by maperrea          #+#    #+#             */
-/*   Updated: 2020/03/06 20:50:50 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/03/11 03:14:55 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int			bn_compare(t_big_number *bn1, t_big_number *bn2)
 		return (1);
 	if (bn2->int_size > 0 && bn2->int_size > bn1->int_size)
 		return (-1);
-	if (bn1->int_size > 0 && bn2->int_size > 0 && (diff = memrevcmp(bn1->int_part, bn2->int_part, bn1->int_size)))
+	if (bn1->int_size > 0 && bn2->int_size > 0 &&
+			(diff = memrevcmp(bn1->int_part, bn2->int_part, bn1->int_size)))
 		return (diff > 0 ? 1 : -1);
 	if (bn1->decimal_size <= 0 && bn2->decimal_size <= 0)
 		return (0);
@@ -50,11 +51,13 @@ int			bn_compare(t_big_number *bn1, t_big_number *bn2)
 		return (bn1->decimal_size > 0 ? 1 : -1);
 	if (bn1->decimal_size == bn2->decimal_size)
 	{
-		if ((diff = memrevcmp(bn1->decimal_part, bn2->decimal_part, bn1->decimal_size)))
+		if ((diff = memrevcmp(bn1->decimal_part,
+						bn2->decimal_part, bn1->decimal_size)))
 			return (diff > 0 ? 1 : -1);
 		return (0);
 	}
-	diff = memrevcmp(bn1->decimal_part, bn2->decimal_part, bn1->decimal_size > bn2->decimal_size ? bn2->decimal_size : bn1->decimal_size);
+	diff = memrevcmp(bn1->decimal_part, bn2->decimal_part,
+bn1->decimal_size > bn2->decimal_size ? bn2->decimal_size : bn1->decimal_size);
 	if (!diff)
 		return (bn1->decimal_size > bn2->decimal_size ? 1 : -1);
 	return (diff > 0 ? 1 : -1);

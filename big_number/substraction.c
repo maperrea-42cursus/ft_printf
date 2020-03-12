@@ -6,13 +6,11 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 16:38:25 by maperrea          #+#    #+#             */
-/*   Updated: 2020/03/07 13:40:35 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/03/11 03:21:34 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "big_number.h"
-
-//TODO negative inputs
 
 static inline int	compute_sub(t_bn_part *out, t_bn_part *bn1, t_bn_part *bn2)
 {
@@ -38,33 +36,31 @@ static inline int	compute_sub(t_bn_part *out, t_bn_part *bn1, t_bn_part *bn2)
 	return (carry_bit);
 }
 
-static inline void	equalize_dec(t_big_number *bn1, t_big_number *bn2)
+static inline void	equalize_num(t_big_number *bn1, t_big_number *bn2)
 {
-	int i;
-	int diff;
+	if (bn1->decimal_size > bn2->decimal_size)
+		equalize_dec(bn1, bn2);
+	else if (bn2->decimal_size > bn1->decimal_size)
+		equalize_dec(bn2, bn1);
+}
 
-	ft_realloc((void **)&bn2->decimal_part,
-			bn2->decimal_size < 0 ? 0 : bn2->decimal_size,
-			bn1->decimal_size < 0 ? 0 : bn1->decimal_size);
-	i = bn2->decimal_size;
-	diff = bn1->decimal_size - bn2->decimal_size;
-	while (i >= 0)
+static inline void	swap_if_needed(t_big_number *out,
+									t_big_number *bn1, t_big_number *bn2)
+{
+	void			*tmp;
+
+	if (bn_compare(bn1, bn2) == -1)
 	{
-		bn2->decimal_part[i + diff] = bn2->decimal_part[i];
-		i--;
+		tmp = bn1;
+		bn1 = bn2;
+		bn2 = tmp;
+		out->sign = 1;
 	}
-	while (i + diff >= 0)
-	{
-		bn2->decimal_part[i + diff] = 0;
-		i--;
-	}
-	bn2->decimal_size = bn1->decimal_size;
 }
 
 t_big_number		*big_number_sub(t_big_number *bn1, t_big_number *bn2)
 {
 	t_big_number	*out;
-	void			*tmp;
 
 	if (!(out = malloc(sizeof(t_big_number))))
 		return (NULL);
@@ -78,19 +74,8 @@ t_big_number		*big_number_sub(t_big_number *bn1, t_big_number *bn2)
 	if (out->decimal_size > 0)
 		if (!(out->decimal_part = ft_calloc(1, out->decimal_size)))
 			return (NULL);
-	if (bn_compare(bn1, bn2) == 0)
-		return (dbl_to_bn(0.));
-	if (bn_compare(bn1, bn2) == -1)
-	{
-		tmp = bn1;
-		bn1 = bn2;
-		bn2 = tmp;
-		out->sign = 1;
-	}
-	if (bn1->decimal_size > bn2->decimal_size)
-		equalize_dec(bn1, bn2);
-	else if (bn2->decimal_size > bn1->decimal_size)
-		equalize_dec(bn2, bn1);
+	swap_if_needed(out, bn1, bn2);
+	equalize_num(bn1, bn2);
 	if (compute_sub(&(t_bn_part){out->decimal_part, out->decimal_size},
 					&(t_bn_part){bn1->decimal_part, bn1->decimal_size},
 					&(t_bn_part){bn2->decimal_part, bn2->decimal_size}))

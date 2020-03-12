@@ -5,20 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/18 13:51:47 by maperrea          #+#    #+#             */
-/*   Updated: 2020/03/07 12:47:13 by maperrea         ###   ########.fr       */
+/*   Created: 2020/03/08 17:05:27 by maperrea          #+#    #+#             */
+/*   Updated: 2020/03/08 17:46:18 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <limits.h>
+#include <unistd.h>
+#include <string.h>
+
+#define UP(X) "\033["#X"F"
 
 int main()
 {
-	unsigned char a;
-	unsigned char b;
-
-	a = 10;
-	b = 200;
-	printf("%d\n", a - b);
+	write(1, "\033[s"UP(1)"\033[K"UP(1)"\033[K\033[u" , strlen("\033[s"UP(1)"\033[K"UP(1)"\033[K\033[u"));
 }

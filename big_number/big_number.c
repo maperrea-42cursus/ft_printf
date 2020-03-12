@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 18:52:26 by maperrea          #+#    #+#             */
-/*   Updated: 2020/03/07 11:49:25 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/03/11 03:14:11 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ static inline void	int_part(t_big_number *big_num, t_dbl dbl)
 {
 	unsigned long tmp;
 
+	if (big_num->int_size <= 0)
+	{
+		big_num->int_part = NULL;
+		return ;
+	}
 	if (!(big_num->int_part = ft_calloc(1, big_num->int_size)))
 		return ;
 	tmp = dbl.exponent > 52 ? dbl.mantissa << ((dbl.exponent - 52) % 8) :
@@ -55,6 +60,11 @@ static inline void	dec_part(t_big_number *big_num, t_dbl dbl)
 {
 	unsigned long tmp;
 
+	if (big_num->decimal_size <= 0)
+	{
+		big_num->decimal_part = NULL;
+		return ;
+	}
 	if (!(big_num->decimal_part = ft_calloc(1, big_num->decimal_size)))
 		return ;
 	if (dbl.exponent >= 0)
@@ -89,15 +99,9 @@ t_big_number		*dbl_to_bn(double n)
 		decimal_bits--;
 	big_num->int_size = ((dbl.exponent + 1) / 8) +
 		((dbl.exponent + 1) % 8 && dbl.exponent >= 0 && n ? 1 : 0);
-	if (big_num->int_size > 0)
-		int_part(big_num, dbl);
-	else
-		big_num->int_part = NULL;
+	int_part(big_num, dbl);
 	big_num->decimal_size = ((decimal_bits - dbl.exponent) / 8) +
 		((decimal_bits - dbl.exponent) % 8 ? 1 : 0);
-	if (big_num->decimal_size > 0)
-		dec_part(big_num, dbl);
-	else
-		big_num->decimal_part = NULL;
+	dec_part(big_num, dbl);
 	return (big_num);
 }
