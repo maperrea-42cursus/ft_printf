@@ -32,7 +32,7 @@ CC			= gcc
 
 RM			= rm -f
 
-CFLAGS		= -Wall -Wextra -Werror
+#CFLAGS		= -Wall -Wextra -Werror
 
 .c.o:
 			@${CC} -O3 ${CFLAGS} -I${INCDIR} -c $^ -o $@

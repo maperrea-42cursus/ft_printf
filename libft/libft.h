@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
+# include "leak_detector.h"
 
 typedef struct	s_list
 {

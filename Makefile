@@ -17,6 +17,8 @@ vpath %.o obj
 
 NAME		= libftprintf.a
 
+INCNAME		= ftprintf
+
 SRCDIR		= src
 
 SRCS		= $(notdir $(shell find $(SRCDIR)/*.c))
@@ -41,10 +43,10 @@ CC 			= gcc
 
 RM			= rm -f
 
-CFLAGS		= -Wall -Werror -Wextra
+#CFLAGS		= -Wall -Werror -Wextra
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
-			$(CC) -O3 $(CFLAGS) -I$(INCDIR) -I$(LIBINC) -c $^ -o $@
+			@$(CC) -O3 $(CFLAGS) -I$(INCDIR) -I$(LIBINC) -c $^ -o $@
 
 all:		$(NAME)
 
@@ -61,7 +63,7 @@ $(NAME):	$(LIB) $(OBJDIR) $(OBJS)
 			@echo "\033[38;5;33mlibftprintf: \033[38;5;2m[OK]\033[0m"
 
 a.out:		all $(LIB)
-			@$(CC) -O3 -fsanitize=address -I$(INCDIR) -I$(LIBINC) $(NAME) main.c
+			@$(CC) -O3 -fsanitize=address -I$(INCDIR) -I$(LIBINC) main.c $(NAME)
 			@echo "\033[38;5;33mmain: \033[38;5;2m[OK]\033[0m"
 
 clean:
@@ -78,4 +80,4 @@ re:
 			make fclean
 			make all
 
-.PHONY:		all clean fclean re
+.PHONY:		all a.out clean fclean re

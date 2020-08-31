@@ -37,7 +37,7 @@ static inline void	equalize_num(t_big_number *bn1, t_big_number *bn2)
 		equalize_dec(bn2, bn1);
 }
 
-void				compute_mult(t_big_number *out,
+static inline void	compute_mult(t_big_number *out,
 								t_big_number *bn1, t_big_number *bn2)
 {
 	unsigned int	tmp;

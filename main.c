@@ -25,5 +25,6 @@ int main()
 //	write(1, "\033[38;5;2mabc\033[0m\n", 20);
 //	ft_printf("%s|\n%s|\n", ft_reverse_str("abcdef"), ft_reverse_str("abcdefg"));
 //	printf("%.50lf\n%.50lf\n", (float)123.123, (double)123.123);
+	CHECK_LEAKS;
 }
 

@@ -17,9 +17,7 @@ t_dbl				dbl_to_t_dbl(double n)
 	t_dbl			dbl;
 	unsigned char	*nbr;
 	unsigned char	*tmp;
-	int				i;
 
-	i = 0;
 	nbr = (unsigned char *)&n;
 	dbl.sign = nbr[7] >> 7;
 	tmp = (unsigned char *)&(dbl.mantissa);

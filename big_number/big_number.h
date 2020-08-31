@@ -51,6 +51,7 @@ t_big_number			*dbl_to_bn(double n);
 
 void					equalize_dec(t_big_number *bn1, t_big_number *bn2);
 void					equalize_int(t_big_number *bn1, t_big_number *bn2);
+void					bn_trim(t_big_number *bn);
 t_big_number			*big_number_add(t_big_number *bn1, t_big_number *bn2);
 t_big_number			*big_number_sub(t_big_number *bn1, t_big_number *bn2);
 t_big_number			*big_number_mult(t_big_number *bn1, t_big_number *bn2);
