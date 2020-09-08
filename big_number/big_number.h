@@ -46,7 +46,7 @@ void					print_bits(void *ptr, int size);
 void					print_bn(t_big_number *bn);
 void					print_dbl_bits(double d);
 
-t_dbl					bl_to_t_dbl(double n);
+t_dbl					dbl_to_t_dbl(double n);
 t_big_number			*dbl_to_bn(double n);
 
 void					equalize_dec(t_big_number *bn1, t_big_number *bn2);

@@ -46,38 +46,47 @@ RM			= rm -f
 #CFLAGS		= -Wall -Werror -Wextra
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
-			@$(CC) -O3 $(CFLAGS) -I$(INCDIR) -I$(LIBINC) -c $^ -o $@
+			@$(CC) -Wno-unused-result -O3 $(CFLAGS) -I$(INCDIR) -I$(LIBINC) -c $^ -o $@
 
 all:		$(NAME)
 
 $(OBJDIR):
-			mkdir -p $(OBJDIR)
+			@mkdir -p $(OBJDIR)
 
 $(LIB):
-			@make -C libft
-			@echo "\033[38;5;33mlibft: \033[38;5;2m[OK]\033[0m"
+			@echo "\033[38;5;33mBuilding libft...\033[0m"
+			@make --no-print-directory -C libft
+			@echo "\033[38;5;2m[built]\033[0m"
 
-$(NAME):	$(LIB) $(OBJDIR) $(OBJS)
+buildecho:
+			@echo "\033[38;5;33mBuilding libftprintf...\033[0m"
+
+$(NAME):	$(LIB) buildecho $(OBJDIR) $(OBJS)
 			@ar rc $(NAME) $(OBJS) $(LIBOBJS)
 			@ranlib $(NAME)
-			@echo "\033[38;5;33mlibftprintf: \033[38;5;2m[OK]\033[0m"
+			@echo "\033[38;5;2m[built]\033[0m"
 
 a.out:		all $(LIB)
+			@echo "\033[38;5;33mBuilding main...\033[0m"
 			@$(CC) -O3 -fsanitize=address -I$(INCDIR) -I$(LIBINC) main.c $(NAME)
-			@echo "\033[38;5;33mmain: \033[38;5;2m[OK]\033[0m"
+			@echo "\033[38;5;2m[built]\033[0m"
 
 clean:
-			$(RM) -r $(OBJDIR)
-			make -C libft clean
+			@echo "\033[38;5;33mCleaning libftprintf...\033[0m"
+			@$(RM) -r $(OBJDIR)
+			@echo "\033[38;5;33m\033[38;5;2m[cleaned]\033[0m"
+			@echo "\033[38;5;33mCleaning libft...\033[0m"
+			@make --no-print-directory -C libft clean
+			@echo "\033[38;5;33m\033[38;5;2m[cleaned]\033[0m"
 
 fclean:		clean
-			$(RM) $(NAME)
-			$(RM) $(LIBDIR)/libft.a
-			$(RM) a.out
+			@$(RM) $(NAME)
+			@$(RM) $(LIBDIR)/libft.a
+			@$(RM) a.out
 
 re:			
-			make -C libft fclean
-			make fclean
-			make all
+			@make --no-print-directory -C libft fclean
+			@make --no-print-directory fclean
+			@make --no-print-directory all
 
 .PHONY:		all a.out clean fclean re

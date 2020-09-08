@@ -35,7 +35,7 @@ RM			= rm -f
 #CFLAGS		= -Wall -Wextra -Werror
 
 .c.o:
-			@${CC} -O3 ${CFLAGS} -I${INCDIR} -c $^ -o $@
+			@${CC} -Wno-unused-result -O3 ${CFLAGS} -I${INCDIR} -c $^ -o $@
 
 all:		bonus
 
@@ -46,10 +46,10 @@ bonus:		${OBJS} ${BONUSOBJS}
 			@ar rc ${NAME} ${OBJS} ${BONUSOBJS}
 
 clean:
-			${RM} ${OBJS} ${BONUSOBJS}
+			@${RM} ${OBJS} ${BONUSOBJS}
 
 fclean:		clean
-			${RM} ${NAME}
+			@${RM} ${NAME}
 
 re:			fclean all
 

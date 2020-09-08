@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "big_number.h"
-/*
+
 static inline int	to_index(int x, t_big_number *yes)
 {
 	return (x >= 0 ? x : yes->decimal_size + x);
@@ -57,4 +57,3 @@ t_big_number		*big_number_div(t_big_number *bn1, t_big_number *bn2,
 	compute_div(out, bn1, bn2, precision);
 	return (out);
 }
-*/
