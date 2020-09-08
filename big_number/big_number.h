@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 18:52:17 by maperrea          #+#    #+#             */
-/*   Updated: 2020/03/11 02:37:11 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/09/08 16:52:02 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,14 @@ typedef struct			s_bn_part
 	int					size;
 }						t_bn_part;
 
+# ifndef LIBFT_H
 typedef struct			s_dbl
 {
 	char				sign;
 	unsigned long		mantissa;
 	int					exponent;
 }						t_dbl;
+# endif
 
 void					print_bits(void *ptr, int size);
 void					print_bn(t_big_number *bn);

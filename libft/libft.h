@@ -6,7 +6,7 @@
 /*   By: maperrea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 14:08:32 by maperrea          #+#    #+#             */
-/*   Updated: 2020/02/27 13:44:55 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/09/08 17:00:56 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,17 @@ typedef struct	s_list
 	void			*content;
 	struct s_list	*next;
 }				t_list;
+
+# ifndef BIG_NUMBER_h
+typedef struct			s_dbl
+{
+	char				sign;
+	unsigned long		mantissa;
+	int					exponent;
+}						t_dbl;
+# endif
+
+char			*ftoa(double nbr);
 
 void			*ft_memset(void *b, int c, size_t len);
 void			ft_bzero(void *s, size_t n);

@@ -6,7 +6,7 @@
 #    By: maperrea <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/27 18:04:28 by maperrea          #+#    #+#              #
-#    Updated: 2020/02/25 15:23:56 by maperrea         ###   ########.fr        #
+#    Updated: 2020/09/08 13:48:42 by maperrea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,10 +43,10 @@ CC 			= gcc
 
 RM			= rm -f
 
-#CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= -Wall -Werror -Wextra
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
-			@$(CC) -Wno-unused-result -O3 $(CFLAGS) -I$(INCDIR) -I$(LIBINC) -c $^ -o $@
+			@$(CC) -O3 $(CFLAGS) -I$(INCDIR) -I$(LIBINC) -c $^ -o $@
 
 all:		$(NAME)
 

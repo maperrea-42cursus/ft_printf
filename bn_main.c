@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 18:49:30 by maperrea          #+#    #+#             */
-/*   Updated: 2020/03/11 03:35:14 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/09/08 16:54:37 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ int					main(void)
 
 
 //	printf("\033[38;5;5mcomparison : %d\033[0m\n\n", bn_compare(bn1, bn2));
+	double n = 255;
+	print_bits(&n, 64);
+	printf("\n");
 	printf("\033[38;5;33mbn1: \n");
 	bn1 = dbl_to_bn((double)256.);
 	print_bn(bn1);

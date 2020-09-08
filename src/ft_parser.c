@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 16:23:16 by maperrea          #+#    #+#             */
-/*   Updated: 2020/02/07 01:25:52 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/09/08 14:01:43 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ int				parse_str(const char **str, t_tag *tag)
 				*str += pos + 1;
 				return (i);
 			}
+			(*str)++;
 		}
 		write(1, *str, 1);
 		(*str)++;

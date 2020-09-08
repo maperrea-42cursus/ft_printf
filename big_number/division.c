@@ -6,10 +6,10 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 10:15:00 by maperrea          #+#    #+#             */
-/*   Updated: 2020/03/14 10:15:00 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/09/08 16:52:31 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+/*
 #include "big_number.h"
 
 static inline int	to_index(int x, t_big_number *yes)
@@ -57,3 +57,4 @@ t_big_number		*big_number_div(t_big_number *bn1, t_big_number *bn2,
 	compute_div(out, bn1, bn2, precision);
 	return (out);
 }
+*/
