@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 15:21:47 by maperrea          #+#    #+#             */
-/*   Updated: 2020/09/08 19:16:19 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/09/09 15:33:49 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,33 @@ t_dbl				dbl_to_t_dbl(double n)
 
 char 	*positive_exponent(char *nbr, int exponent)
 {
-	return NULL;
+	int i;
+	int len;
+
+	if (!exponent)
+		return (nbr);
+	i = 1;
+	nbr[0] += nbr[0] - '0';
+	//printf(">>%c\n", nbr[0]);
+	if (nbr[0] > '9')
+	{
+		nbr[0] -= 10;
+		nbr = ft_strjoin("1", nbr);
+		i++;
+	}
+	len = ft_strlen(nbr);
+	while (i < len)
+	{
+		nbr[i] += nbr[i] - '0';
+		if (nbr[i] > '9')
+		{
+			nbr[i] -= 10;
+			(nbr[i - 1])++;
+		}
+		i++;
+	}
+	//printf(">%d: %s\n", exponent, nbr);
+	return (positive_exponent(nbr, exponent - 1));
 }
 
 
@@ -49,10 +75,11 @@ char 	*negative_exponent(char *nbr, int exponent)
 
 /*
 ** TODO special cases (NaN, +-inf, subnormals?)
+** 		leaks on strjoin
 */
 char	*ftoa (double nbr)
 {
-	char			*int_part;
+	char			*str;
 	t_dbl			dbl;
 	int				i;
 
@@ -62,8 +89,17 @@ char	*ftoa (double nbr)
 	while (!((dbl.mantissa >>= 1) & 1) && i)
 		i--;
 	dbl.exponent -= i;
-	printf(">>%ld, %d\n", dbl.mantissa, dbl.exponent);
-	int_part = ft_utoa(dbl.mantissa);
-	return(int_part);
+	//printf("%ld, %d\n", dbl.mantissa, dbl.exponent);
+	str = ft_utoa(dbl.mantissa);
+	//printf ("%s\n", str);
+	if (dbl.exponent == 0)
+		str = ft_strjoin(str, ".");
+	else if (dbl.exponent > 0)
+		str = positive_exponent(str, dbl.exponent);
+	else
+		str = negative_exponent(str, dbl.exponent);
+	if (dbl.sign)
+		str = ft_strjoin("-", str);
+	return (str);
 }
 

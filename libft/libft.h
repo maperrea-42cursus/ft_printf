@@ -6,7 +6,7 @@
 /*   By: maperrea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 14:08:32 by maperrea          #+#    #+#             */
-/*   Updated: 2020/09/08 17:00:56 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/09/09 15:33:53 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct	s_list
 	struct s_list	*next;
 }				t_list;
 
-# ifndef BIG_NUMBER_h
+# ifndef BIG_NUMBER_H
 typedef struct			s_dbl
 {
 	char				sign;
