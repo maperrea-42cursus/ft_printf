@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 15:21:47 by maperrea          #+#    #+#             */
-/*   Updated: 2020/09/09 15:33:49 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/09/09 20:14:02 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ char 	*positive_exponent(char *nbr, int exponent)
 		return (nbr);
 	i = 1;
 	nbr[0] += nbr[0] - '0';
-	//printf(">>%c\n", nbr[0]);
 	if (nbr[0] > '9')
 	{
 		nbr[0] -= 10;
@@ -63,14 +62,36 @@ char 	*positive_exponent(char *nbr, int exponent)
 		}
 		i++;
 	}
-	//printf(">%d: %s\n", exponent, nbr);
 	return (positive_exponent(nbr, exponent - 1));
 }
 
 
 char 	*negative_exponent(char *nbr, int exponent)
 {
-	return NULL;
+	int i;
+	int dot_pos;
+
+	if (!exponent)
+		return (nbr);
+	dot_pos = ft_strchr(nbr, '.');
+	//printf("%d\n", dot_pos);
+	i = ft_strlen(nbr) - 2;
+	if ((nbr[i + 1] - '0') % 2)
+		nbr = ft_strjoin(nbr, dot_pos == -1 ? ".5" : "5");
+	nbr[i + 1] = ((nbr[i + 1] - '0') / 2) + '0';
+	//printf("%s\n", nbr);
+	while (i >= 0)
+	{
+		if (i == dot_pos)
+			i--;
+		if ((nbr[i] - '0') % 2)
+			nbr[i + (i + 1 == dot_pos ? 2 : 1)] += 5;
+		nbr[i] = ((nbr[i] - '0') / 2) + '0';
+		i--;
+	}
+	if (nbr[0] == '0' && nbr[1] != '.')
+		nbr = ft_strtrim(nbr, "0");
+	return (negative_exponent(nbr, exponent + 1));
 }
 
 /*
@@ -89,14 +110,13 @@ char	*ftoa (double nbr)
 	while (!((dbl.mantissa >>= 1) & 1) && i)
 		i--;
 	dbl.exponent -= i;
-	//printf("%ld, %d\n", dbl.mantissa, dbl.exponent);
 	str = ft_utoa(dbl.mantissa);
-	//printf ("%s\n", str);
-	if (dbl.exponent == 0)
-		str = ft_strjoin(str, ".");
-	else if (dbl.exponent > 0)
+	//printf("%s %d\n", str, dbl.exponent);
+/*	if (dbl.exponent == 0)
+		str = ft_strjoin(str, "."); */
+	if (dbl.exponent > 0)
 		str = positive_exponent(str, dbl.exponent);
-	else
+	else if (dbl.exponent < 0)
 		str = negative_exponent(str, dbl.exponent);
 	if (dbl.sign)
 		str = ft_strjoin("-", str);
