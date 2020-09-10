@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 15:21:47 by maperrea          #+#    #+#             */
-/*   Updated: 2020/09/09 20:14:02 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/09/10 16:01:08 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,12 @@ t_dbl				dbl_to_t_dbl(double n)
 	tmp = (unsigned char *)&(dbl.exponent);
 	tmp[1] = (nbr[7] >> 4) & 0b00000111;
 	tmp[0] = (nbr[7] << 4) | (nbr[6] >> 4);
-	if (dbl.exponent)
+	if (!dbl.exponent)
+	{
+		if (dbl.mantissa)
+			dbl.exponent = -1022;
+	}
+	else if (dbl.exponent != 2047)
 	{
 		dbl.mantissa |= 1l << 52;
 		dbl.exponent -= 1023;
@@ -36,7 +41,7 @@ t_dbl				dbl_to_t_dbl(double n)
 	return (dbl);
 }
 
-char 	*positive_exponent(char *nbr, int exponent)
+char				*pos_exp(char *nbr, int exponent)
 {
 	int i;
 	int len;
@@ -62,11 +67,10 @@ char 	*positive_exponent(char *nbr, int exponent)
 		}
 		i++;
 	}
-	return (positive_exponent(nbr, exponent - 1));
+	return (pos_exp(nbr, exponent - 1));
 }
 
-
-char 	*negative_exponent(char *nbr, int exponent)
+char				*neg_exp(char *nbr, int exponent)
 {
 	int i;
 	int dot_pos;
@@ -74,12 +78,10 @@ char 	*negative_exponent(char *nbr, int exponent)
 	if (!exponent)
 		return (nbr);
 	dot_pos = ft_strchr(nbr, '.');
-	//printf("%d\n", dot_pos);
 	i = ft_strlen(nbr) - 2;
 	if ((nbr[i + 1] - '0') % 2)
 		nbr = ft_strjoin(nbr, dot_pos == -1 ? ".5" : "5");
 	nbr[i + 1] = ((nbr[i + 1] - '0') / 2) + '0';
-	//printf("%s\n", nbr);
 	while (i >= 0)
 	{
 		if (i == dot_pos)
@@ -91,35 +93,37 @@ char 	*negative_exponent(char *nbr, int exponent)
 	}
 	if (nbr[0] == '0' && nbr[1] != '.')
 		nbr = ft_strtrim(nbr, "0");
-	return (negative_exponent(nbr, exponent + 1));
+	return (neg_exp(nbr, exponent + 1));
 }
 
 /*
 ** TODO special cases (NaN, +-inf, subnormals?)
 ** 		leaks on strjoin
 */
-char	*ftoa (double nbr)
+
+char				*ftoa(double nbr)
 {
 	char			*str;
 	t_dbl			dbl;
 	int				i;
 
 	dbl = dbl_to_t_dbl(nbr);
+	printf("%d\n", dbl.exponent);
+	if (dbl.exponent == 2047)		
+	{
+		str = ft_strdup(dbl.mantissa ? "nan" : "inf");
+		return (dbl.sign ? ft_strjoin("-", str) : str);
+	}
 	i = 52;
 	dbl.mantissa <<= 1;
 	while (!((dbl.mantissa >>= 1) & 1) && i)
 		i--;
 	dbl.exponent -= i;
 	str = ft_utoa(dbl.mantissa);
-	//printf("%s %d\n", str, dbl.exponent);
-/*	if (dbl.exponent == 0)
-		str = ft_strjoin(str, "."); */
-	if (dbl.exponent > 0)
-		str = positive_exponent(str, dbl.exponent);
+	printf("%lu, %d\n", dbl.mantissa, dbl.exponent);
+	if (dbl.exponent > 0) 
+		str = pos_exp(str, dbl.exponent);
 	else if (dbl.exponent < 0)
-		str = negative_exponent(str, dbl.exponent);
-	if (dbl.sign)
-		str = ft_strjoin("-", str);
-	return (str);
+		str = neg_exp(str, dbl.exponent);
+	return (dbl.sign ? ft_strjoin("-", str) : str);
 }
-

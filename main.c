@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 20:41:28 by maperrea          #+#    #+#             */
-/*   Updated: 2020/09/09 20:14:00 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/09/10 17:57:05 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,18 @@ int main()
 	printf("ret = %d\nret_libc = %d\n", ret, ret_libc);
 	char *str = ftoa(255.);
 	printf(str);*/
-	double f = 0.00000123456789;
-	printf("%.50lf\n%s\n", ftoa(f));
+	double f = 0.;
+/*	char *ptr = (char*)&f;
+	ptr[7] = 0b11111111;
+	ptr[6] = 0b11110000;
+	ptr[5] = 0b00000000;
+	ptr[4] = 0b00000000;
+	ptr[3] = 0b00000000;
+	ptr[2] = 0b00000000;
+	ptr[1] = 0b00000000;
+	ptr[0] = 0b00000000;*/
+	int i = 0;
+	printf("%f\n%s\n", f, ftoa(f));
 	
 //	write(1, "\033[38;5;2mabc\033[0m\n", 20);
 //	ft_printf("%s|\n%s|\n", ft_reverse_str("abcdef"), ft_reverse_str("abcdefg"));

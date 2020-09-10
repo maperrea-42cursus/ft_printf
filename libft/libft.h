@@ -6,7 +6,7 @@
 /*   By: maperrea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 14:08:32 by maperrea          #+#    #+#             */
-/*   Updated: 2020/09/09 20:14:04 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/09/10 16:18:22 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct			s_dbl
 }						t_dbl;
 # endif
 
-char			*ftoa(double nbr);
 
 void			*ft_memset(void *b, int c, size_t len);
 void			ft_bzero(void *s, size_t n);
@@ -75,6 +74,7 @@ char			*ft_itoa(long long n);
 char			*ft_utoa(unsigned long long n);
 char			*ft_itoa_base(long long n, const char *base);
 char			*ft_utoa_base(unsigned long long n, const char *base);
+char			*ftoa(double nbr);
 char			*ft_ftoa(double d, int precision);
 char			*ft_convert_base(char *str, char *base_from, char *base_to);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));

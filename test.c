@@ -5,18 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/08 17:05:27 by maperrea          #+#    #+#             */
-/*   Updated: 2020/03/08 17:46:18 by maperrea         ###   ########.fr       */
+/*   Created: 2020/09/10 19:53:22 by maperrea          #+#    #+#             */
+/*   Updated: 2020/09/10 19:53:59 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <unistd.h>
-#include <string.h>
 
-#define UP(X) "\033["#X"F"
-
-int main()
+int main ()
 {
-	write(1, "\033[s"UP(1)"\033[K"UP(1)"\033[K\033[u" , strlen("\033[s"UP(1)"\033[K"UP(1)"\033[K\033[u"));
+	
 }
