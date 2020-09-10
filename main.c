@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 20:41:28 by maperrea          #+#    #+#             */
-/*   Updated: 2020/09/10 17:57:05 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/09/10 20:49:48 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ int main()
 	ptr[2] = 0b00000000;
 	ptr[1] = 0b00000000;
 	ptr[0] = 0b00000000;*/
-	int i = 0;
-	printf("%f\n%s\n", f, ftoa(f));
+/*	int i = 0;
+	printf("%f\n%s\n", f, ftoa(f));*/
+	printf("%.*d\n", -10, 123);
+	ft_printf("%.*d\n", -10, 123);
 	
 //	write(1, "\033[38;5;2mabc\033[0m\n", 20);
 //	ft_printf("%s|\n%s|\n", ft_reverse_str("abcdef"), ft_reverse_str("abcdefg"));
