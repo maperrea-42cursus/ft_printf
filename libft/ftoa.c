@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 15:21:47 by maperrea          #+#    #+#             */
-/*   Updated: 2020/09/10 16:01:08 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/09/11 14:31:12 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ char				*ftoa(double nbr)
 	int				i;
 
 	dbl = dbl_to_t_dbl(nbr);
-	printf("%d\n", dbl.exponent);
+	//printf("%d\n", dbl.exponent);
 	if (dbl.exponent == 2047)		
 	{
 		str = ft_strdup(dbl.mantissa ? "nan" : "inf");
@@ -120,7 +120,7 @@ char				*ftoa(double nbr)
 		i--;
 	dbl.exponent -= i;
 	str = ft_utoa(dbl.mantissa);
-	printf("%lu, %d\n", dbl.mantissa, dbl.exponent);
+//	printf("%lu, %d\n", dbl.mantissa, dbl.exponent);
 	if (dbl.exponent > 0) 
 		str = pos_exp(str, dbl.exponent);
 	else if (dbl.exponent < 0)
