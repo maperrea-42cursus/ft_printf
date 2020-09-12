@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 14:04:36 by maperrea          #+#    #+#             */
-/*   Updated: 2020/09/13 00:03:31 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/09/13 00:16:54 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ void 	print_special(t_tag tag, t_nbr n)
 	if (tag.width != -1 && (tag.flags & MINUS))
 		padding(n.width - 3 - ((tag.flags & (PLUS | SPACE)) || n.neg), 0);
 }
+
 void	print_float(t_tag tag, t_nbr n)
 {
 	if (tag.width != -1 && !(tag.flags & MINUS) && !(tag.flags & ZEROES))
@@ -134,6 +135,11 @@ void	print_float(t_tag tag, t_nbr n)
 		padding(n.width - n.size - ((tag.flags & (PLUS | SPACE)) || n.neg), 0);
 
 }
+
+/*
+**TODO rounding for negatives?
+*/
+
 int		print_double(t_tag tag, va_list ap)
 {
 	t_nbr	n;
@@ -147,7 +153,6 @@ int		print_double(t_tag tag, va_list ap)
 	n.width = n.width < 0 && tag.width != -1 ? -n.width : n.width;
 	n.size = ft_strlen(ft_split(&(n.nbr[n.neg]), '.')[0]) + n.precision
 		+ ((tag.flags & HASHTAG) || n.precision);
-//	printf("\n>>%s, %d, %d, %d, %d\n", n.nbr, n.width, n.precision, n.size, n.neg);
 	if (ft_isdigit(n.nbr[0]) || (n.nbr[0] == '-' && ft_isdigit(n.nbr[1])))
 	{
 		rounding(&n);

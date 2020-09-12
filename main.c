@@ -6,14 +6,14 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 20:41:28 by maperrea          #+#    #+#             */
-/*   Updated: 2020/09/12 23:51:27 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/09/13 00:19:13 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <limits.h>
 #include "ft_printf.h"
-#define INPUT "%#10f|\n", 1./0.
+#define INPUT "%.0f|\n", 22.5
 
 int main()
 {
