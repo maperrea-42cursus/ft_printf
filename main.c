@@ -6,14 +6,14 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 20:41:28 by maperrea          #+#    #+#             */
-/*   Updated: 2020/09/11 19:25:01 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/09/12 23:51:27 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <limits.h>
 #include "ft_printf.h"
-#define INPUT "%#5f|\n", 123.
+#define INPUT "%#10f|\n", 1./0.
 
 int main()
 {
@@ -22,6 +22,8 @@ int main()
 	ret = ft_printf(INPUT);
 	ret_libc = printf(INPUT);
 	printf("ret = %d\nret_libc = %d\n", ret, ret_libc);
+	printf("%s | %s\n", ft_split("123.", '.')[0], ft_split("123.", '.')[1]);
+
 /*	char *str = ftoa(255.);
 	printf(str);*/
 /*	double f = 0.;
