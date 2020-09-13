@@ -6,7 +6,7 @@
 /*   By: maperrea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:51:20 by maperrea          #+#    #+#             */
-/*   Updated: 2020/03/03 17:00:23 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/09/13 17:13:42 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ t_print	**init_dispatch_table(void)
 	table[PERCENTAGE] = &print_percentage;
 	table[COUNT] = &print_count;
 	table[DOUBLE] = &print_double;
-/*	table[E_OR_F] = &print_e_or_f;
-	table[SCIENCE] = &print_science; */
+/*	table[E_OR_F] = &print_e_or_f; */
+	table[SCIENCE] = &print_science;
 	return(table);
 }
 

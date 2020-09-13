@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 15:21:47 by maperrea          #+#    #+#             */
-/*   Updated: 2020/09/12 13:50:11 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/09/13 16:34:39 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ char				*ftoa(double nbr)
 	if (dbl.exponent == 2047)		
 	{
 		str = ft_strdup(dbl.mantissa ? "nan" : "inf");
-		return (dbl.sign ? ft_strjoin("-", str) : str);
+		return (dbl.sign && !dbl.mantissa ? ft_strjoin("-", str) : str);
 	}
 	i = 52;
 	dbl.mantissa <<= 1;
