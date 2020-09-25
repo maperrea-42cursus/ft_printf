@@ -6,14 +6,14 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 20:41:28 by maperrea          #+#    #+#             */
-/*   Updated: 2020/09/25 17:30:18 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/09/25 22:34:03 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <limits.h>
 #include "ft_printf.h"
-#define INPUT "%10g|\n", 1.
+#define INPUT "%.3g|\n", 1234.
 	
 int main()
 {
