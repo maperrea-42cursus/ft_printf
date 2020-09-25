@@ -6,15 +6,15 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 20:41:28 by maperrea          #+#    #+#             */
-/*   Updated: 2020/09/13 19:08:07 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/09/25 17:30:18 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <limits.h>
 #include "ft_printf.h"
-#define INPUT "%.2e|\n", 1.155
-
+#define INPUT "%10g|\n", 1.
+	
 int main()
 {
 	int ret_libc = 1;
@@ -44,6 +44,7 @@ int main()
 //	write(1, "\033[38;5;2mabc\033[0m\n", 20);
 //	ft_printf("%s|\n%s|\n", ft_reverse_str("abcdef"), ft_reverse_str("abcdefg"));
 //	printf("%.50lf\n%.50lf\n", (float)123.123, (double)123.123);
+//	system("leaks a.out");
 	CHECK_LEAKS;
 }
 

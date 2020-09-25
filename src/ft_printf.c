@@ -6,7 +6,7 @@
 /*   By: maperrea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:51:20 by maperrea          #+#    #+#             */
-/*   Updated: 2020/09/13 17:13:42 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/09/25 17:25:29 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_print	**init_dispatch_table(void)
 {
 	t_print	**table;
 
-	if (!(table = malloc(sizeof(t_print *) * 12)))
+	if (!(table = malloc(sizeof(t_print *) * 13)))
 		return (NULL);
 	table[CHAR] = &print_char;
 	table[STRING] = &print_string;
@@ -29,9 +29,36 @@ t_print	**init_dispatch_table(void)
 	table[PERCENTAGE] = &print_percentage;
 	table[COUNT] = &print_count;
 	table[DOUBLE] = &print_double;
-/*	table[E_OR_F] = &print_e_or_f; */
+	table[E_OR_F] = &print_e_or_f;
 	table[SCIENCE] = &print_science;
 	return(table);
+}
+
+int				parse_str(const char **str, t_tag *tag)
+{
+	int		pos;
+	int 	i;
+
+	i = 0;
+	while (**str)
+	{
+		if (**str == '%')
+		{
+			pos = 1;
+			build_tag(tag, *str, &pos);
+			if (tag->specifier != NONE || (**str == '%' && *(*str + 1) == 0))
+			{
+				*str += pos + 1;
+				return (i);
+			}
+			(*str)++;
+		}
+		write(1, *str, 1);
+		(*str)++;
+		i++;
+	}
+	tag->specifier = NONE;
+	return (i);
 }
 
 int		ft_printf(const char *str, ...)

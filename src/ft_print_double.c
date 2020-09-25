@@ -6,24 +6,24 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 14:04:36 by maperrea          #+#    #+#             */
-/*   Updated: 2020/09/13 19:08:04 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/09/24 02:40:07 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	rounding(t_nbr *n)
+int		rounding(t_nbr *n)
 {
 	int value;
 	int i;
 
 	if ((i = ft_strchr(n->nbr, '.') + n->precision + 1) >= ft_strlen(n->nbr))
-		return ;
+		return (0);
 	value = n->nbr[i] - 48;
 	while (value == 5 && n->nbr[++i])
 		value += n->nbr[i] - 48;
 	i = ft_strchr(n->nbr, '.') + n->precision;
-	if (value > 5 || (value == 5 && n->nbr[i] == '.' && n->nbr[i - 1] == '9'))
+	if (value > 5 || (value == 5 && (n->nbr[i - (n->precision == 0)]) % 2))
 	{
 		while (i >= n->neg && (n->nbr[i] == '9' || n->nbr[i] == '.'))
 			if (n->nbr[i--] == '9')
@@ -36,9 +36,7 @@ void	rounding(t_nbr *n)
 		else
 			n->nbr[i] += 1;
 	}
-	else if (value == 5 && n->nbr[i] == '.')
-		n->nbr[i - 1] += (n->nbr[i - 1] - '0') % 2;
-	return ;
+	return (i < n->neg);
 }
 
 int		print_special(t_tag tag, t_nbr n)
@@ -90,7 +88,7 @@ int		print_double(t_tag tag, va_list ap)
 	n.width = n.width < 0 && tag.width != -1 ? -n.width : n.width;
 	n.size = ft_strlen(ft_split(&(n.nbr[n.neg]), '.')[0]) + n.precision
 		+ ((tag.flags & HASHTAG) || n.precision);
-	if (ft_isdigit(n.nbr[0]) || (n.nbr[0] == '-' && ft_isdigit(n.nbr[1])))
+	if (ft_isdigit(n.nbr[n.neg]))
 		return (print_float(tag, n));
 	else
 		return (print_special(tag, n));

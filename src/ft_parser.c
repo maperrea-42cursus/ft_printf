@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 16:23:16 by maperrea          #+#    #+#             */
-/*   Updated: 2020/09/08 14:01:43 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/09/25 16:46:17 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_length		*get_length(const char *str, int *pos)
 	if (str[*pos] == 'l' && str[*pos + 1] == 'l')
 		length = &get_long_long;
 	if (str[*pos] == 'h')
-		length = &get_short;
+ 		length = &get_short;
 	if (str[*pos] == 'h' && str[*pos + 1] == 'h')
 		length = &get_short_short;
 	if (length == &get_short || length == &get_long)
@@ -88,31 +88,4 @@ void			build_tag(t_tag *tag, const char *str, int *pos)
 	tag->precision = get_precision(str, pos);
 	tag->length = get_length(str, pos);
 	tag->specifier = ft_strchr(TYPES, str[*pos]);
-}
-
-int				parse_str(const char **str, t_tag *tag)
-{
-	int		pos;
-	int 	i;
-
-	i = 0;
-	while (**str)
-	{
-		if (**str == '%')
-		{
-			pos = 1;
-			build_tag(tag, *str, &pos);
-			if (tag->specifier != NONE || (**str == '%' && *(*str + 1) == 0))
-			{
-				*str += pos + 1;
-				return (i);
-			}
-			(*str)++;
-		}
-		write(1, *str, 1);
-		(*str)++;
-		i++;
-	}
-	tag->specifier = NONE;
-	return (i);
 }
