@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 14:04:36 by maperrea          #+#    #+#             */
-/*   Updated: 2020/09/24 02:40:07 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/09/29 21:59:26 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int		print_special(t_tag tag, t_nbr n)
 
 int		print_float(t_tag tag, t_nbr n)
 {
-	rounding(&n);
 	if (tag.width != -1 && !(tag.flags & MINUS) && !(tag.flags & ZEROES))
 		padding(n.width - n.size - ((tag.flags & (PLUS | SPACE)) || n.neg), 0);
 	n.neg ? write(1, "-", 1) : 0;
@@ -89,7 +88,10 @@ int		print_double(t_tag tag, va_list ap)
 	n.size = ft_strlen(ft_split(&(n.nbr[n.neg]), '.')[0]) + n.precision
 		+ ((tag.flags & HASHTAG) || n.precision);
 	if (ft_isdigit(n.nbr[n.neg]))
+	{
+		rounding(&n);
 		return (print_float(tag, n));
+	}
 	else
 		return (print_special(tag, n));
 }

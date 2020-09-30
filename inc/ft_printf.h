@@ -6,7 +6,7 @@
 /*   By: maperrea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:50:12 by maperrea          #+#    #+#             */
-/*   Updated: 2020/09/25 20:21:03 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/09/29 22:01:16 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int						print_science(t_tag tag, va_list ap);
 void					print_nbr(t_tag tag, t_nbr n);
 int						print_special(t_tag tag, t_nbr n);
 int						print_float(t_tag tag, t_nbr n);
-int						print_exp(t_tag tag, t_nbr n);
+int						print_exp(t_tag tag, t_nbr n, int exp);
 
 char					*get_regular(va_list ap, int u);
 char					*get_short(va_list ap, int u);
