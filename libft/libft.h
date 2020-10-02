@@ -6,7 +6,7 @@
 /*   By: maperrea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 14:08:32 by maperrea          #+#    #+#             */
-/*   Updated: 2020/09/24 02:27:09 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/10/02 14:31:57 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,22 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
-# include "leak_detector.h"
 
 typedef struct	s_list
 {
-	void			*content;
-	struct s_list	*next;
+	void				*content;
+	struct s_list		*next;
 }				t_list;
 
 # ifndef BIG_NUMBER_H
-typedef struct			s_dbl
+
+typedef struct	s_dbl
 {
 	char				sign;
 	unsigned long		mantissa;
 	int					exponent;
-}						t_dbl;
+}				t_dbl;
 # endif
-
 
 void			*ft_memset(void *b, int c, size_t len);
 void			ft_bzero(void *s, size_t n);

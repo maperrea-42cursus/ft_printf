@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 16:47:40 by maperrea          #+#    #+#             */
-/*   Updated: 2020/10/01 20:04:00 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/10/02 13:48:49 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		leading_zeroes(t_nbr n)
 			count++;
 		i++;
 	}
-	if (!n.nbr[n.neg+i])
+	if (!n.nbr[n.neg + i])
 		return (0);
 	return (count);
 }
@@ -61,8 +61,8 @@ int		to_f(t_tag tag, t_nbr n)
 
 int		to_e(t_tag tag, t_nbr n)
 {
-	t_nbr new;
-	int exp;
+	t_nbr	new;
+	int		exp;
 
 	new = (t_nbr){n.nbr, n.width, n.precision, n.size, n.neg};
 	new.precision = n.precision - 1;
@@ -70,13 +70,11 @@ int		to_e(t_tag tag, t_nbr n)
 	exp += rounding(&new);
 	move_comma(&new);
 	n.nbr = new.nbr;
-//	printf(">>%d\n>>%d\n>>%s\n", trimmed_size(n) - 1, n.precision, new.nbr);
 	new.size = ((trimmed_size(n) - 1 < n.precision ?
 								trimmed_size(n) - 1 : n.precision)
 		+ (new.precision > 0 && n.nbr[n.neg + trimmed_size(n) - 1] != '.'))
 		* ((tag.flags & HASHTAG) == 0)
 		+ (n.precision + 1) * ((tag.flags & HASHTAG) != 0);
-//	printf(">>%d\n>>%02x\n", new.size, tag.flags & HASHTAG);
 	return (print_exp(tag, new, exp));
 }
 
@@ -96,13 +94,14 @@ int		print_e_or_f(t_tag tag, va_list ap)
 	n.width = n.width < 0 && tag.width != -1 ? -n.width : n.width;
 	if (!ft_isdigit(n.nbr[n.neg]))
 		return (print_special(tag, n));
-	n_dup = (t_nbr){ft_strdup(n.nbr), n.width, n.precision - ft_strlen(ft_split(&(n.nbr[n.neg]), '.')[0]), 0, n.neg};
+	n_dup = (t_nbr){ft_strdup(n.nbr), n.width, n.precision
+		- ft_strlen(ft_split(&(n.nbr[n.neg]), '.')[0]), 0, n.neg};
 	exp = move_comma(&n_dup);
 	exp += rounding(&n_dup);
 	n_dup.nbr = ft_strdup(n.nbr);
 	n_dup.precision -= rounding(&n_dup);
 	if (exp < -4 || exp >= n.precision + 4 || n_dup.precision < 0)
-		return(to_e(tag, n));
+		return (to_e(tag, n));
 	else
-		return(to_f(tag, n));
+		return (to_f(tag, n));
 }

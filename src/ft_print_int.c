@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 20:08:37 by maperrea          #+#    #+#             */
-/*   Updated: 2020/09/13 17:01:01 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/10/02 13:47:55 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		print_int(t_tag tag, va_list ap)
 	tag.precision = n.precision < 0 ? -1 : tag.precision;
 	n.nbr = (*(tag.length))(ap, 0);
 	n.neg = (*(n.nbr) == '-');
-	n.size = ft_strlen(&(n.nbr)[n.neg]) > n.precision && !(n.precision == 0 
+	n.size = ft_strlen(&(n.nbr)[n.neg]) > n.precision && !(n.precision == 0
 		&& !ft_atoi(n.nbr)) ? ft_strlen(&(n.nbr)[n.neg]) : n.precision;
 	tag.flags = n.width < 0 && tag.width != -1 ? tag.flags | MINUS : tag.flags;
 	n.width = n.width < 0 && tag.width != -1 ? -n.width : n.width;

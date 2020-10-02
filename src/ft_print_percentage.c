@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 16:33:36 by maperrea          #+#    #+#             */
-/*   Updated: 2020/02/27 21:23:48 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/10/02 13:46:55 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ int	print_percentage(t_tag tag, va_list ap)
 	write(1, "%", 1);
 	if (tag.width != -1 && (tag.flags & MINUS))
 		padding(width - 1, 0);
-	return (tag.width == -1 ? 1 : width); 
+	return (tag.width == -1 ? 1 : width);
 }

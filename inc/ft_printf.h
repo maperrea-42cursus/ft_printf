@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maperrea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/28 17:50:12 by maperrea          #+#    #+#             */
-/*   Updated: 2020/09/29 22:01:16 by maperrea         ###   ########.fr       */
+/*   Created: 2020/10/02 15:01:25 by maperrea          #+#    #+#             */
+/*   Updated: 2020/10/02 15:43:22 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FT_PRINTF_H
 
 # include				<unistd.h>
-# include				<string.h>
 # include				<stdio.h>
 # include				<stdlib.h>
 # include				<stdarg.h>
@@ -72,12 +71,6 @@ typedef struct			s_nbr
 	int					neg;
 }						t_nbr;
 
-typedef struct			s_double
-{
-	int					*int_part;
-	int					*float_part;
-}						t_double;
-
 typedef int				(t_print)(t_tag, va_list);
 
 t_print					**init_dispatch_table();
@@ -113,4 +106,5 @@ int						rounding(t_nbr *n);
 int						move_comma(t_nbr *n);
 
 int						ft_printf(const char *str, ...);
+
 #endif

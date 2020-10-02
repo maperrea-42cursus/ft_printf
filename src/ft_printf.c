@@ -6,13 +6,13 @@
 /*   By: maperrea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:51:20 by maperrea          #+#    #+#             */
-/*   Updated: 2020/09/25 17:25:29 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/10/02 13:50:22 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_print	**init_dispatch_table(void)
+t_print		**init_dispatch_table(void)
 {
 	t_print	**table;
 
@@ -31,13 +31,13 @@ t_print	**init_dispatch_table(void)
 	table[DOUBLE] = &print_double;
 	table[E_OR_F] = &print_e_or_f;
 	table[SCIENCE] = &print_science;
-	return(table);
+	return (table);
 }
 
-int				parse_str(const char **str, t_tag *tag)
+int			parse_str(const char **str, t_tag *tag)
 {
 	int		pos;
-	int 	i;
+	int		i;
 
 	i = 0;
 	while (**str)
@@ -61,7 +61,7 @@ int				parse_str(const char **str, t_tag *tag)
 	return (i);
 }
 
-int		ft_printf(const char *str, ...)
+int			ft_printf(const char *str, ...)
 {
 	va_list ap;
 	t_print	**dispatch_table;
@@ -87,5 +87,3 @@ int		ft_printf(const char *str, ...)
 	free(dispatch_table);
 	return (ret);
 }
-
-//		printf(">>flags = %d\n>>width = %d\n>>precision = %d\n>>specifier = %d\n", tag.flags, tag.width, tag.precision, tag.specifier);

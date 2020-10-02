@@ -6,14 +6,14 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 20:41:28 by maperrea          #+#    #+#             */
-/*   Updated: 2020/10/01 18:59:54 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/10/02 15:38:42 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <limits.h>
 #include "ft_printf.h"
-#define INPUT "%.1g|\n", 9.9
+#define INPUT "%.1d|\n", 9
 	
 int main()
 {
@@ -45,6 +45,5 @@ int main()
 //	ft_printf("%s|\n%s|\n", ft_reverse_str("abcdef"), ft_reverse_str("abcdefg"));
 //	printf("%.50lf\n%.50lf\n", (float)123.123, (double)123.123);
 //	system("leaks a.out");
-	CHECK_LEAKS;
 }
 

@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 18:01:43 by maperrea          #+#    #+#             */
-/*   Updated: 2020/03/03 14:12:31 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/10/02 13:44:02 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,5 @@ int		print_char(t_tag tag, va_list ap)
 	write(1, &c, 1);
 	if (tag.width != -1 && (tag.flags & MINUS))
 		padding(width - 1, 0);
-	return (tag.width == -1 || !width ? 1 : width); 
+	return (tag.width == -1 || !width ? 1 : width);
 }

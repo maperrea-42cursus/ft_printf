@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 16:23:16 by maperrea          #+#    #+#             */
-/*   Updated: 2020/09/25 16:46:17 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/10/02 13:44:30 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_length		*get_length(const char *str, int *pos)
 	if (str[*pos] == 'l' && str[*pos + 1] == 'l')
 		length = &get_long_long;
 	if (str[*pos] == 'h')
- 		length = &get_short;
+		length = &get_short;
 	if (str[*pos] == 'h' && str[*pos + 1] == 'h')
 		length = &get_short_short;
 	if (length == &get_short || length == &get_long)

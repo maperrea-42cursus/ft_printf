@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 17:12:42 by maperrea          #+#    #+#             */
-/*   Updated: 2020/09/30 22:36:52 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/10/02 13:51:05 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ int		print_exp(t_tag tag, t_nbr n, int exp)
 
 int		print_science(t_tag tag, va_list ap)
 {
-	t_nbr n;
-	int exp;
+	t_nbr	n;
+	int		exp;
 
 	n.width = tag.width == -2 ? va_arg(ap, int) : tag.width;
 	n.precision = tag.precision == -2 ? va_arg(ap, int) : tag.precision;

@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 18:42:00 by maperrea          #+#    #+#             */
-/*   Updated: 2020/03/03 19:18:06 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/10/02 13:49:24 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		print_string(t_tag tag, va_list ap)
 	char	*str;
 	int		width;
 	int		precision;
-	int 	size;
+	int		size;
 
 	width = tag.width == -2 ? va_arg(ap, int) : tag.width;
 	precision = tag.precision == -2 ? va_arg(ap, int) : tag.precision;
