@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 18:30:25 by maperrea          #+#    #+#             */
-/*   Updated: 2020/02/04 18:31:23 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/10/02 17:30:47 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 int		print_count(t_tag tag, va_list ap)
 {
-	(void)tag;
-	(void)ap;
+	if (tag.width == -2)
+		va_arg(ap, int);
+	if (tag.precision == -2)
+		va_arg(ap, int);
 	return (0);
 }

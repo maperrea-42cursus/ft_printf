@@ -6,7 +6,7 @@
 /*   By: maperrea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 14:08:32 by maperrea          #+#    #+#             */
-/*   Updated: 2020/10/02 14:31:57 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/10/02 16:46:12 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ typedef struct	s_list
 	void				*content;
 	struct s_list		*next;
 }				t_list;
+
+typedef struct	s_malloc
+{
+	void				*ptr;
+	struct s_malloc		*next;
+}				t_malloc;
 
 # ifndef BIG_NUMBER_H
 
@@ -94,5 +100,9 @@ void			ft_lstclear(t_list **list, void (*del)(void *));
 void			ft_lstiter(t_list *list, void (*f)(void *));
 t_list			*ft_lstmap(t_list *list,
 							void *(*f)(void *), void (*del)(void *));
+
+void			*malloc_list(size_t size);
+void			free_list();
+void			free_one(void *ptr);
 
 #endif

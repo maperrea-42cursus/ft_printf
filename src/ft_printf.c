@@ -6,7 +6,7 @@
 /*   By: maperrea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:51:20 by maperrea          #+#    #+#             */
-/*   Updated: 2020/10/02 13:50:22 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/10/02 16:56:58 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int			ft_printf(const char *str, ...)
 			if ((ptr = va_arg(ap, int *)))
 				*ptr = ret;
 		ret += parse_str(&str, &tag);
+		free_list();
 	}
 	va_end(ap);
 	free(dispatch_table);

@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 17:40:58 by maperrea          #+#    #+#             */
-/*   Updated: 2020/10/02 13:46:23 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/10/02 16:38:47 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,17 @@ void	print_nbr_hex(t_tag tag, t_nbr n)
 int		print_hex(t_tag tag, va_list ap)
 {
 	t_nbr	n;
-	char	*tmp;
 
 	n.width = tag.width == -2 ? va_arg(ap, int) : tag.width;
 	n.precision = tag.precision == -2 ? va_arg(ap, int) : tag.precision;
 	tag.precision = n.precision < 0 ? -1 : tag.precision;
 	n.nbr = (*(tag.length))(ap, 1);
-	tmp = n.nbr;
 	tag.flags = ft_strlen(n.nbr) == 1 && *(n.nbr) == '0' &&
 		!(tag.specifier == POINTER) ? tag.flags & ~HASHTAG : tag.flags;
 	if (tag.specifier == HEX_UC)
 		n.nbr = ft_convert_base(n.nbr, DEC_STR, HEX_UC_STR);
 	else
 		n.nbr = ft_convert_base(n.nbr, DEC_STR, HEX_LC_STR);
-	free(tmp);
 	n.size = ft_strlen(n.nbr) > n.precision &&
 		!(n.precision == 0 && ft_strlen(n.nbr) == 1 && *(n.nbr) == '0') ?
 			ft_strlen(n.nbr) : n.precision;
@@ -55,7 +52,6 @@ int		print_hex(t_tag tag, va_list ap)
 	n.width = n.width < 0 && tag.width != -1 ? -n.width : n.width;
 	n.neg = 0;
 	print_nbr_hex(tag, n);
-	free(n.nbr);
 	return (n.width > n.size + (tag.flags & HASHTAG) ?
 			n.width : n.size + (tag.flags & HASHTAG));
 }

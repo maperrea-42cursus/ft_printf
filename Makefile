@@ -6,7 +6,7 @@
 #    By: maperrea <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/27 18:04:28 by maperrea          #+#    #+#              #
-#    Updated: 2020/10/02 14:32:32 by maperrea         ###   ########.fr        #
+#    Updated: 2020/10/02 17:31:47 by maperrea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ CC 			= gcc
 
 RM			= rm -f
 
-CFLAGS		= -Wall -Werror -Wextra
+#CFLAGS		= -Wall -Werror -Wextra
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 			@$(CC) -O3 $(CFLAGS) -I$(INCDIR) -I$(LIBINC) -c $^ -o $@
@@ -68,7 +68,7 @@ $(NAME):	$(LIB) buildecho $(OBJDIR) $(OBJS)
 
 a.out:		all $(LIB)
 			@echo "\033[38;5;33mBuilding main...\033[0m"
-			@$(CC) $(CFLAGS) -O3 -fsanitize=address -I$(INCDIR) -I$(LIBINC) main.c $(NAME)
+			@$(CC) $(CFLAGS) -O3 -I$(INCDIR) -I$(LIBINC) main.c $(NAME)
 			@echo "\033[38;5;2m[built]\033[0m"
 
 clean:

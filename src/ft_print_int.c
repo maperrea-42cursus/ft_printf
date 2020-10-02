@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 20:08:37 by maperrea          #+#    #+#             */
-/*   Updated: 2020/10/02 13:47:55 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/10/02 16:39:00 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int		print_int(t_tag tag, va_list ap)
 	tag.flags = n.width < 0 && tag.width != -1 ? tag.flags | MINUS : tag.flags;
 	n.width = n.width < 0 && tag.width != -1 ? -n.width : n.width;
 	print_nbr(tag, n);
-	free(n.nbr);
 	return (n.width > n.size ?
 			n.width : n.size + (n.neg || (tag.flags & (PLUS | SPACE))));
 }

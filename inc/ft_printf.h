@@ -6,25 +6,25 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/02 15:01:25 by maperrea          #+#    #+#             */
-/*   Updated: 2020/10/02 15:43:22 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/10/02 16:28:12 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include				<unistd.h>
-# include				<stdio.h>
-# include				<stdlib.h>
-# include				<stdarg.h>
-# include				<limits.h>
-# include				"libft.h"
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <stdarg.h>
+# include <limits.h>
+# include "libft.h"
 
-# define ZEROES			0b00000001
-# define HASHTAG		0b00000010
-# define SPACE			0b00000100
-# define PLUS			0b00001000
-# define MINUS			0b00010000
+# define ZEROES			1
+# define HASHTAG		2
+# define SPACE			4
+# define PLUS			8
+# define MINUS			16
 # define FLAGS			"0# +-"
 # define TYPES			"cspdiuxX%nfge"
 # define HEX_LC_STR		"0123456789abcdef"
@@ -51,7 +51,7 @@ typedef enum			e_type
 	SCIENCE
 }						t_type;
 
-typedef char			*(t_length)(va_list, int);
+typedef char			*(t_length)(va_list ap, int u);
 
 typedef struct			s_tag
 {

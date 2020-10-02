@@ -6,7 +6,7 @@
 /*   By: maperrea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 14:19:17 by maperrea          #+#    #+#             */
-/*   Updated: 2020/01/09 16:20:50 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/10/02 16:47:27 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char		*ft_strtrim(const char *str, const char *set)
 	size = end - start + 1;
 	if (start > end)
 		size = 1;
-	if (!(new = malloc(sizeof(char) * size)))
+	if (!(new = malloc_list(sizeof(char) * size)))
 		return (NULL);
 	(void)ft_strlcpy(new, &(str[start]), size);
 	return (new);

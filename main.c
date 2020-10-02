@@ -6,17 +6,18 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 20:41:28 by maperrea          #+#    #+#             */
-/*   Updated: 2020/10/02 15:38:42 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/10/02 17:32:39 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <limits.h>
 #include "ft_printf.h"
-#define INPUT "%.1d|\n", 9
+#define INPUT "%*n|\n", 5, &n
 	
 int main()
 {
+	int n = 0;
 	int ret_libc = 1;
 	int ret = 1;
 	ret = ft_printf(INPUT);
