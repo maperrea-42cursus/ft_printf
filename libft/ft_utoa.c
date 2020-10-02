@@ -6,7 +6,7 @@
 /*   By: maperrea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 17:34:12 by maperrea          #+#    #+#             */
-/*   Updated: 2020/02/06 21:22:42 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/10/02 15:50:18 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	get_size(unsigned long long n)
 	int size;
 
 	size = 0;
-	if(n == 0)
+	if (n == 0)
 		return (1);
 	while (n > 0)
 	{

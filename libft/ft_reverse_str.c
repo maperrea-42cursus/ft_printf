@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 23:22:56 by maperrea          #+#    #+#             */
-/*   Updated: 2020/02/16 00:30:45 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/10/02 15:49:34 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_reverse_str(char *str)
 {
-	int 	i;
-	int 	j;
+	int		i;
+	int		j;
 	char	*out;
 
 	i = 0;

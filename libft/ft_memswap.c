@@ -6,7 +6,7 @@
 /*   By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 16:37:04 by maperrea          #+#    #+#             */
-/*   Updated: 2020/09/24 02:21:48 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/10/02 15:49:06 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	ft_memswap(void *p1, void *p2, size_t bytes)
 {
-	size_t i;
-	char tmp;
+	size_t	i;
+	char	tmp;
 
 	i = 0;
-	while(i < bytes)
+	while (i < bytes)
 	{
 		tmp = ((char *)p1)[i];
 		((char *)p1)[i] = ((char *)p2)[i];
