@@ -6,7 +6,7 @@
 #    By: maperrea <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/27 18:04:28 by maperrea          #+#    #+#              #
-#    Updated: 2020/10/02 17:31:47 by maperrea         ###   ########.fr        #
+#    Updated: 2020/10/06 21:01:43 by maperrea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ LIBOBJS		= $(addprefix $(LIBDIR)/,$(LIBSRC:.c=.o))
 
 INCDIR		= inc
 
-LIB			= ft
+LIB			= libft.a
 
 LIBDIR		= libft
 
@@ -43,7 +43,7 @@ CC 			= gcc
 
 RM			= rm -f
 
-#CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= -Wall -Werror -Wextra
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 			@$(CC) -O3 $(CFLAGS) -I$(INCDIR) -I$(LIBINC) -c $^ -o $@
