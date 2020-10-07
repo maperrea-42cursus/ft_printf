@@ -112,14 +112,13 @@ RM			= rm -f
 .c.o:
 			$(CC) $(CFLAGS) -I$(INCDIR) -I$(LIBDIR) -c $^ -o $@
 
+all:		$(NAME)
 
 $(LIB):
 			make -C $(LIBDIR)
 
 $(NAME):	$(LIB) $(OBJS)
-			$(AR) $(NAME) $(LIBOBJS) $(OBJS)
-
-all:		$(NAME)
+			$(AR) $(NAME) libft/libft.a $(OBJS)
 
 clean:
 			make -C $(LIBDIR) clean
