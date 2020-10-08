@@ -12,6 +12,7 @@
 
 #include "libft.h"
 
+//oui
 int	ft_strlen(const char *s)
 {
 	int i;

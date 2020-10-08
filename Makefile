@@ -43,7 +43,7 @@ CC 			= gcc
 
 RM			= rm -f
 
-CFLAGS		= -Wall -Werror -Wextra
+#CFLAGS		= -Wall -Werror -Wextra
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 			@$(CC) -O3 $(CFLAGS) -I$(INCDIR) -I$(LIBINC) -c $^ -o $@
