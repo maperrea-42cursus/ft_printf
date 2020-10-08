@@ -58,10 +58,8 @@ RM			= rm -f
 
 all:		$(NAME)
 
-$(LIB):
+$(NAME):	$(OBJS)
 			make -C $(LIBDIR)
-
-$(NAME):	$(OBJS) $(LIB)
 			cp $(LIBDIR)/$(LIB) $(NAME)
 			$(AR) $(NAME) $(OBJS)
 
