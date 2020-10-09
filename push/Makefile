@@ -6,7 +6,7 @@
 #    By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/06 19:14:47 by maperrea          #+#    #+#              #
-#    Updated: 2020/10/06 21:25:45 by maperrea         ###   ########.fr        #
+#    Updated: 2020/10/09 21:46:49 by maperrea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,6 +62,8 @@ $(NAME):	$(OBJS)
 			make -C $(LIBDIR)
 			cp $(LIBDIR)/$(LIB) $(NAME)
 			$(AR) $(NAME) $(OBJS)
+
+bonus:		$(NAME)
 
 clean:
 			make -C $(LIBDIR) clean

@@ -6,13 +6,12 @@
 /*   By: maperrea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 15:17:38 by maperrea          #+#    #+#             */
-/*   Updated: 2020/09/12 16:53:48 by maperrea         ###   ########.fr       */
+/*   Updated: 2020/10/08 18:54:58 by maperrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-//oui
 int	ft_strlen(const char *s)
 {
 	int i;
