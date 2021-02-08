@@ -29,6 +29,7 @@
 # define TYPES			"cspdiuxX%nfge"
 # define HEX_LC_STR		"0123456789abcdef"
 # define HEX_UC_STR		"0123456789ABCDEF"
+# define OCT_STR		"01234567"
 # define DEC_STR		"0123456789"
 
 typedef unsigned char	t_bit_flag_8;
@@ -44,6 +45,7 @@ typedef enum			e_type
 	UNSIGNED_INT,
 	HEX_LC,
 	HEX_UC,
+	OCT,
 	PERCENTAGE,
 	COUNT,
 	DOUBLE,
@@ -84,6 +86,7 @@ int						print_pointer(t_tag tag, va_list ap);
 int						print_int(t_tag tag, va_list ap);
 int						print_unsigned(t_tag tag, va_list ap);
 int						print_hex(t_tag tag, va_list ap);
+int						print_oct(t_tag tag, va_list ap);
 int						print_percentage(t_tag tag, va_list ap);
 int						print_count(t_tag tag, va_list ap);
 int						print_double(t_tag tag, va_list ap);

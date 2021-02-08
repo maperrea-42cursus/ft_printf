@@ -26,6 +26,7 @@ t_print		**init_dispatch_table(void)
 	table[UNSIGNED_INT] = &print_unsigned;
 	table[HEX_LC] = &print_hex;
 	table[HEX_UC] = &print_hex;
+	table[OCT] = &print_oct;
 	table[PERCENTAGE] = &print_percentage;
 	table[COUNT] = &print_count;
 	table[DOUBLE] = &print_double;
