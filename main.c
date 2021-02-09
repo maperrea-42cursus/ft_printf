@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <limits.h>
 #include "ft_printf.h"
-#define INPUT "%#o|\n", INT_MAX
+#define INPUT "%#0-8.5o|\n", 34
 	
 int main()
 {

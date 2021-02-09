@@ -27,7 +27,7 @@ void	print_nbr_oct(t_tag tag, t_nbr n)
 	if (!(n.precision == 0 && ft_strlen(n.nbr) == 1 && *(n.nbr) == '0'))
 		write(1, &(n.nbr)[n.neg], ft_strlen(&(n.nbr)[n.neg]));
 	if (tag.width != -1 && (tag.flags & MINUS))
-		padding(n.width - n.size - ((tag.flags & HASHTAG) ? 2 : 0), 0);
+		padding(n.width - n.size - ((tag.flags & HASHTAG) != 0), 0);
 }
 
 int		print_oct(t_tag tag, va_list ap)
@@ -37,9 +37,8 @@ int		print_oct(t_tag tag, va_list ap)
 	n.width = tag.width == -2 ? va_arg(ap, int) : tag.width;
 	n.precision = tag.precision == -2 ? va_arg(ap, int) : tag.precision;
 	tag.precision = n.precision < 0 ? -1 : tag.precision;
+	n.precision -= (n.precision >= 1 && tag.flags & HASHTAG);
 	n.nbr = (*(tag.length))(ap, 1);
-	tag.flags = ft_strlen(n.nbr) == 1 && *(n.nbr) == '0' ?
-					tag.flags & ~HASHTAG : tag.flags;
 	n.nbr = ft_convert_base(n.nbr, DEC_STR, OCT_STR);
 	n.size = ft_strlen(n.nbr) > n.precision &&
 		!(n.precision == 0 && ft_strlen(n.nbr) == 1 && *(n.nbr) == '0') ?
