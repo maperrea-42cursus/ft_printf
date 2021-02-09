@@ -40,6 +40,8 @@ int		print_oct(t_tag tag, va_list ap)
 	n.precision -= (n.precision >= 1 && tag.flags & HASHTAG);
 	n.nbr = (*(tag.length))(ap, 1);
 	n.nbr = ft_convert_base(n.nbr, DEC_STR, OCT_STR);
+	tag.flags = ft_strlen(n.nbr) == 1 && *(n.nbr) == '0' && n.precision == -1 ?
+		tag.flags & ~HASHTAG : tag.flags;
 	n.size = ft_strlen(n.nbr) > n.precision &&
 		!(n.precision == 0 && ft_strlen(n.nbr) == 1 && *(n.nbr) == '0') ?
 			ft_strlen(n.nbr) : n.precision;
