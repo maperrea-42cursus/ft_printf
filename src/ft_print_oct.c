@@ -16,18 +16,18 @@ void	print_nbr_oct(t_tag tag, t_nbr n)
 {
 	if (tag.width != -1 && !(tag.flags & MINUS) &&
 				(!(tag.flags & ZEROES) || tag.precision != -1))
-		padding(n.width - n.size - (tag.flags & HASHTAG != 0), 0);
+		padding(n.width - n.size - ((tag.flags & HASHTAG) != 0), 0);
 	if (tag.flags & HASHTAG)
 		write(1, "0", 1);
 	if ((tag.width != -1 && (tag.flags & ZEROES) &&
 				!(tag.flags & MINUS)) && tag.precision == -1)
-		padding(n.width - n.size - (tag.flags & HASHTAG ? 2 : 0), 1);
+		padding(n.width - n.size - ((tag.flags & HASHTAG) != 0), 1);
 	if (tag.precision != -1)
 		padding(n.precision - ft_strlen(&(n.nbr)[n.neg]), 1);
 	if (!(n.precision == 0 && ft_strlen(n.nbr) == 1 && *(n.nbr) == '0'))
 		write(1, &(n.nbr)[n.neg], ft_strlen(&(n.nbr)[n.neg]));
 	if (tag.width != -1 && (tag.flags & MINUS))
-		padding(n.width - n.size - (tag.flags & HASHTAG ? 2 : 0), 0);
+		padding(n.width - n.size - ((tag.flags & HASHTAG) ? 2 : 0), 0);
 }
 
 int		print_oct(t_tag tag, va_list ap)
@@ -47,7 +47,7 @@ int		print_oct(t_tag tag, va_list ap)
 	tag.flags = n.width < 0 && tag.width != -1 ? tag.flags | MINUS : tag.flags;
 	n.width = n.width < 0 && tag.width != -1 ? -n.width : n.width;
 	n.neg = 0;
-	print_nbr_hex(tag, n);
-	return (n.width > n.size + (tag.flags & HASHTAG != 0) ?
-			n.width : n.size + (tag.flags & HASHTAG != 0));
+	print_nbr_oct(tag, n);
+	return (n.width > n.size + ((tag.flags & HASHTAG) != 0) ?
+			n.width : n.size + ((tag.flags & HASHTAG) != 0));
 }

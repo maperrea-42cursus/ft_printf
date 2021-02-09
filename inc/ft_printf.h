@@ -26,7 +26,7 @@
 # define PLUS			8
 # define MINUS			16
 # define FLAGS			"0# +-"
-# define TYPES			"cspdiuxX%nfge"
+# define TYPES			"cspdiuxXo%nfge"
 # define HEX_LC_STR		"0123456789abcdef"
 # define HEX_UC_STR		"0123456789ABCDEF"
 # define OCT_STR		"01234567"

@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <limits.h>
 #include "ft_printf.h"
-#define INPUT "%.3s|\n", NULL
+#define INPUT "%#o|\n", INT_MAX
 	
 int main()
 {
