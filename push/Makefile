@@ -6,7 +6,7 @@
 #    By: maperrea <maperrea@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/06 19:14:47 by maperrea          #+#    #+#              #
-#    Updated: 2020/10/09 21:46:49 by maperrea         ###   ########.fr        #
+#    Updated: 2021/02/10 14:10:53 by maperrea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCS		= ft_itoa_size.c		\
 			  ft_print_double.c		\
 			  ft_print_e_or_f.c		\
 			  ft_print_hex.c		\
+			  ft_print_oct.c		\
 			  ft_print_int.c		\
 			  ft_print_percentage.c	\
 			  ft_print_pointer.c	\
