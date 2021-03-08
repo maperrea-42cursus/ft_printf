@@ -23,7 +23,10 @@ void	*malloc_list(size_t size)
 	if (!(ptr = malloc(size)))
 		return (NULL);
 	if (!(new_malloc = malloc(sizeof(t_malloc))))
+	{
+		free (ptr);
 		return (NULL);
+	}
 	new_malloc->ptr = ptr;
 	new_malloc->next = NULL;
 	if (!g_malloc_list)

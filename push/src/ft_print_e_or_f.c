@@ -94,13 +94,13 @@ int		print_e_or_f(t_tag tag, va_list ap)
 	n.width = n.width < 0 && tag.width != -1 ? -n.width : n.width;
 	if (!ft_isdigit(n.nbr[n.neg]))
 		return (print_special(tag, n));
-	n_dup = (t_nbr){ft_strdup(n.nbr), n.width, n.precision
-		- ft_strlen(ft_split(&(n.nbr[n.neg]), '.')[0]), 0, n.neg};
-	exp = move_comma(&n_dup);
-	exp += rounding(&n_dup);
-	n_dup.nbr = ft_strdup(n.nbr);
-	n_dup.precision -= rounding(&n_dup);
-	if (exp < -4 || exp >= n.precision + 4 || n_dup.precision < 0)
+	if (!(n_dup = (t_nbr){ft_strdup(n.nbr), n.width, n.precision
+		- ft_strlen(ft_split(&(n.nbr[n.neg]), '.')[0]), 0, n.neg}).nbr)
+		return (0);
+	exp = move_comma(&n_dup) + rounding(&n_dup);
+	if (!(n_dup.nbr = ft_strdup(n.nbr)))
+		return (0);
+	if (exp < -4 || exp >= n.precision + 4 || n_dup.precision - rounding(&n_dup) < 0)
 		return (to_e(tag, n));
 	else
 		return (to_f(tag, n));
