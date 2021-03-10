@@ -24,7 +24,7 @@ void	*malloc_list(size_t size)
 		return (NULL);
 	if (!(new_malloc = malloc(sizeof(t_malloc))))
 	{
-		free (ptr);
+		free(ptr);
 		return (NULL);
 	}
 	new_malloc->ptr = ptr;
