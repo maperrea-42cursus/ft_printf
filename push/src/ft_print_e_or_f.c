@@ -102,5 +102,5 @@ int		print_e_or_f(t_tag tag, va_list ap)
 	if (!(n_dup.nbr = ft_strdup(n.nbr)))
 		return (0);
 	return ((exp < -4 || exp >= n.precision + 4
-		|| n_dup.precision - rounding(&n_dup) < 0) ? to_e(tag, n) : to_f(tag, n));
+	|| n_dup.precision - rounding(&n_dup) < 0) ? to_e(tag, n) : to_f(tag, n));
 }

@@ -105,7 +105,7 @@ char				*ftoa(double nbr)
 	dbl = dbl_to_t_dbl(nbr);
 	if (dbl.exponent == 2047)
 	{
-		str = ft_strdup(dbl.mantissa ? "nan" : "inf")
+		str = ft_strdup(dbl.mantissa ? "nan" : "inf");
 		return (dbl.sign && !dbl.mantissa ? ft_strjoin("-", str) : str);
 	}
 	i = 52;
