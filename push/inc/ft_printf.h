@@ -50,7 +50,8 @@ typedef enum			e_type
 	COUNT,
 	DOUBLE,
 	E_OR_F,
-	SCIENCE
+	SCIENCE,
+	LENGTH
 }						t_type;
 
 typedef char			*(t_length)(va_list ap, int u);

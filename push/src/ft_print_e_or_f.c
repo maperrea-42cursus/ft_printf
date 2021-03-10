@@ -84,7 +84,8 @@ int		print_e_or_f(t_tag tag, va_list ap)
 	t_nbr	n_dup;
 	int		exp;
 
-	n.nbr = ftoa(va_arg(ap, double));
+	if (!(n.nbr = ftoa(va_arg(ap, double))))
+		return (0);
 	n.width = tag.width == -2 ? va_arg(ap, int) : tag.width;
 	n.precision = tag.precision == -2 ? va_arg(ap, int) : tag.precision;
 	n.precision = n.precision < 0 ? 6 : n.precision;

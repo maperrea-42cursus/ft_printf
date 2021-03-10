@@ -46,7 +46,7 @@ char				*pos_exp(char *nbr, int exponent)
 	int i;
 	int len;
 
-	if (!exponent)
+	if (!exponent || !nbr)
 		return (nbr);
 	i = 1;
 	nbr[0] += nbr[0] - '0';
@@ -75,7 +75,7 @@ char				*neg_exp(char *nbr, int exponent)
 	int i;
 	int dot_pos;
 
-	if (!exponent)
+	if (!exponent || !nbr)
 		return (nbr);
 	dot_pos = ft_strchr(nbr, '.');
 	i = ft_strlen(nbr) - 2;
@@ -104,10 +104,9 @@ char				*ftoa(double nbr)
 
 	dbl = dbl_to_t_dbl(nbr);
 	if (dbl.exponent == 2047)
-	{
-		str = ft_strdup(dbl.mantissa ? "nan" : "inf");
-		return (dbl.sign && !dbl.mantissa ? ft_strjoin("-", str) : str);
-	}
+		return (dbl.sign && !dbl.mantissa ?
+			ft_strjoin("-", ft_strdup(dbl.mantissa ? "nan" : "inf"))
+			: ft_strdup(dbl.mantissa ? "nan" : "inf"));
 	i = 52;
 	dbl.mantissa <<= 1;
 	while (!((dbl.mantissa >>= 1) & 1) && i)

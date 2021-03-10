@@ -16,7 +16,7 @@ t_print		**init_dispatch_table(void)
 {
 	t_print	**table;
 
-	if (!(table = malloc(sizeof(t_print *) * 13)))
+	if (!(table = malloc(sizeof(t_print *) * LENGTH)))
 		return (NULL);
 	table[CHAR] = &print_char;
 	table[STRING] = &print_string;
@@ -74,7 +74,8 @@ int			ft_printf(const char *str, ...)
 		return (-1);
 	ret = 0;
 	va_start(ap, str);
-	dispatch_table = init_dispatch_table();
+	if (!(dispatch_table = init_dispatch_table()))
+		return (-1);
 	ret += parse_str(&str, &tag);
 	while (tag.specifier != NONE)
 	{

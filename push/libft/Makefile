@@ -72,11 +72,11 @@ OBJS		= ${SRCS:.c=.o}
 
 INCDIR		= .
 
-CC			= gcc
+CC			= gcc -g -fsanitize=address
 
 RM			= rm -f
 
-CFLAGS		= -Wall -Wextra -Werror
+#CFLAGS		= -Wall -Wextra -Werror
 
 .c.o:
 			${CC} ${CFLAGS} -I${INCDIR} -c $^ -o $@

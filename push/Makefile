@@ -48,9 +48,9 @@ LIBOBJS		= $(addprefix $(LIBDIR)/, $(LIBSRCS:.c=.o))
 
 AR			= ar rc
 
-CC			= gcc
+CC			= gcc -g -fsanitize=address
 
-CFLAGS 		= -Wall -Wextra -Werror
+#CFLAGS 		= -Wall -Wextra -Werror
 
 RM			= rm -f
 

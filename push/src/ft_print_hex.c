@@ -38,7 +38,8 @@ int		print_hex(t_tag tag, va_list ap)
 	n.width = tag.width == -2 ? va_arg(ap, int) : tag.width;
 	n.precision = tag.precision == -2 ? va_arg(ap, int) : tag.precision;
 	tag.precision = n.precision < 0 ? -1 : tag.precision;
-	n.nbr = (*(tag.length))(ap, 1);
+	if (!(n.nbr = (*(tag.length))(ap, 1)))
+		return (0);
 	tag.flags = ft_strlen(n.nbr) == 1 && *(n.nbr) == '0' &&
 		!(tag.specifier == POINTER) ? tag.flags & ~HASHTAG : tag.flags;
 	if (tag.specifier == HEX_UC)

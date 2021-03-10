@@ -38,7 +38,8 @@ int		print_int(t_tag tag, va_list ap)
 	n.width = tag.width == -2 ? va_arg(ap, int) : tag.width;
 	n.precision = tag.precision == -2 ? va_arg(ap, int) : tag.precision;
 	tag.precision = n.precision < 0 ? -1 : tag.precision;
-	n.nbr = (*(tag.length))(ap, 0);
+	if (!(n.nbr = (*(tag.length))(ap, 0)))
+		return (0);
 	n.neg = (*(n.nbr) == '-');
 	n.size = ft_strlen(&(n.nbr)[n.neg]) > n.precision && !(n.precision == 0
 		&& !ft_atoi(n.nbr)) ? ft_strlen(&(n.nbr)[n.neg]) : n.precision;

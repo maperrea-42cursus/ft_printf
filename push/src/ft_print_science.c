@@ -74,7 +74,8 @@ int		print_science(t_tag tag, va_list ap)
 	n.width = tag.width == -2 ? va_arg(ap, int) : tag.width;
 	n.precision = tag.precision == -2 ? va_arg(ap, int) : tag.precision;
 	n.precision = n.precision < 0 ? 6 : n.precision;
-	n.nbr = ftoa(va_arg(ap, double));
+	if (!(n.nbr = ftoa(va_arg(ap, double))))
+		return (0);
 	n.neg = (*(n.nbr) == '-');
 	tag.flags = n.width < 0 && tag.width != -1 ? tag.flags | MINUS : tag.flags;
 	n.width = n.width < 0 && tag.width != -1 ? -n.width : n.width;

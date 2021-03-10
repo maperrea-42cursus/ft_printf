@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
+# define malloc(X) NULL
 
 typedef struct	s_list
 {
